@@ -11,6 +11,14 @@
 
 ---
 
+### 📊 **Quick Access to Key Results**
+- **[📈 View Full Qualification Results](qualification_results.md)** - Comprehensive model performance rankings and analytics
+- **[🎯 Challenge Prompts](prompts/)** - Core prompt templates used for challenge creation and solving
+  - [CreateCodingChallenge.txt](prompts/CreateCodingChallenge.txt) - Template for LLMs to create challenges
+  - [SolveCodingChallenge.txt](prompts/SolveCodingChallenge.txt) - Template for LLMs to solve challenges
+
+---
+
 Welcome to the Valyrian Games, an advanced AI benchmarking system that evaluates Large Language Models (LLMs) through rigorous coding challenges. This platform serves as the "Olympics of AI," providing comprehensive performance analytics, cost analysis, and qualification metrics for AI models across multiple providers.
 
 ## 🎯 System Overview
