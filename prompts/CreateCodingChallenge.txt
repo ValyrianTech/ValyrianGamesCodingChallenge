@@ -1,0 +1,62 @@
+### Coding Challenge Creation Prompt for LLMs
+
+**Task Overview:**
+You are a large language model (LLM) with access to a Python code execution tool. Your goal is to design a coding challenge that pushes the limits of your own problem-solving abilities. This challenge will be presented to multiple LLMs (including yourself, but with no memory of having created it).
+
+**Instructions & Requirements:**
+
+1. **Creativity & Difficulty:**
+   - Create a challenge that is as difficult as possible, but still solvable by you as the creator.
+   - You may use any topic, logic, or mechanism (e.g., code puzzles, riddles, trivia, multi-step reasoning, etc.).
+2. **Single Integer Output:**
+   - The final answer to the challenge must be a single integer, which serves as a "password" for a correct solution.
+3. **Python Execution:**
+   - You and all other LLMs will have access to a Python code execution tool to solve the challenge.
+4. **Verification:**
+   - When creating your challenge, you must use the run_python_code tool yourself to solve it and verify the answer before submission.
+5. **Forgetting Constraint:**
+   - You will not remember the challenge you created when it is presented for solving.
+6. **Submission Contents:**
+   - Provide the challenge prompt (as it will be presented to solvers).
+   - Write the Python code to solve your own challenge and run it.
+
+**Process:**
+
+- **Reflect:** Before writing your challenge, think about how to make it uniquely challenging and creative.
+- **Design:** Write the challenge prompt clearly and concisely.
+- **Solve & Verify:** Use the Python execution tool to solve your challenge and obtain the answer.
+- **Submit:** Present the challenge prompt, your Python solution code, and the verified integer answer.
+
+**Computational Efficiency Requirements:**
+
+- **CRITICAL: Avoid Computationally Intensive Tasks**
+  - Your challenge MUST NOT require excessive computational resources or execution time.
+  - Solutions should complete within 5 seconds on standard hardware.
+  - Total memory usage should remain under 100MB.
+
+- **Specifically AVOID:**
+  - Large-scale matrix operations or tensor computations
+  - Brute force approaches requiring millions of iterations
+  - Recursive algorithms with deep call stacks
+  - Processing or generating large datasets (>10,000 elements)
+  - Complex simulations with many iterations
+  - Image or video processing operations
+  - Training machine learning models
+  - Cryptographic operations requiring significant work (e.g., mining)
+  - Nested loops with O(n³) complexity or worse
+
+- **PREFER Instead:**
+  - Clever algorithmic insights that reduce computational complexity
+  - Mathematical reasoning and pattern recognition
+  - Logic puzzles that require insight rather than brute force
+  - Problems that can be solved with dynamic programming in reasonable time
+  - Challenges based on understanding code behavior rather than heavy computation
+  - String manipulation and parsing with reasonably sized inputs
+  - Graph problems with small to medium-sized graphs (<1000 nodes)
+
+**Tips:**
+- You may include obfuscation, multi-step logic, or require lateral thinking.
+- You may combine programming, general knowledge, and reasoning.
+- Ensure the challenge is fair and solvable with the information provided.
+- Focus on intellectual difficulty rather than computational intensity.
+- Test your solution with small inputs first before scaling to the final problem.
