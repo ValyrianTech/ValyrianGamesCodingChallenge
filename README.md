@@ -28,8 +28,8 @@ The Valyrian Games platform is a sophisticated benchmarking ecosystem designed t
 
 The system consists of four core components working in harmony:
 
-### 1. **Challenge Generation & Execution** (`run_coding_challenge_phase_1.py`)
-The foundation script that orchestrates the complete challenge workflow:
+### 1. **Challenge Generation & Execution**
+The foundation system that orchestrates the complete challenge workflow:
 
 - **Docker Environment Management**: Automatically restarts containers for clean execution
 - **Challenge Creation**: Generates unique coding problems using specified LLM models
@@ -45,7 +45,7 @@ The foundation script that orchestrates the complete challenge workflow:
 - Comprehensive conversation metrics extraction
 - Real-time progress monitoring with detailed logging
 
-### 2. **Intelligent Model Selection** (`run_random_coding_challenge.py`)
+### 2. **Intelligent Model Selection**
 Advanced orchestration system for automated testing across the entire model fleet:
 
 - **Cost-Aware Selection**: Prioritizes cheaper models and those with fewer existing challenges
@@ -66,7 +66,7 @@ Advanced orchestration system for automated testing across the entire model flee
 - **Together.ai**: DeepSeek-R1, Qwen, GLM, Llama variants
 - **Groq**: High-speed inference models
 
-### 3. **Comprehensive Analytics Engine** (`analyze_challenge_statistics.py`)
+### 3. **Comprehensive Analytics Engine**
 Sophisticated statistical analysis system that processes all challenge results:
 
 - **Multi-Dimensional Metrics**: Acceptance rate, success rate, cost efficiency, token usage
@@ -81,7 +81,7 @@ Sophisticated statistical analysis system that processes all challenge results:
 - `model_cost_summary.json`: Structured data for visualizations and model selection
 - Console reports with sortable metrics and detailed breakdowns
 
-### 4. **Professional Visualization Suite** (`visualize_model_analytics.py`)
+### 4. **Professional Visualization Suite**
 Executive-grade analytics dashboard with four distinct visualization types:
 
 #### **Cost vs Performance Scatter Plot**
@@ -136,45 +136,21 @@ Executive-grade analytics dashboard with four distinct visualization types:
 ## 🚀 Quick Start Guide
 
 ### **Running Individual Challenges**
-```bash
-# Run a single challenge with specific model
-python3 run_coding_challenge_phase_1.py \
-    --model "OpenAI:gpt-4.1-2025-04-14" \
-    --temperature 0.7 \
-    --validation-attempts 3 \
-    --success-threshold 0.5
-```
+The system supports running individual challenges with specific models and configurable parameters including temperature, validation attempts, and success thresholds.
 
 ### **Automated Fleet Testing**
-```bash
-# Run random challenges across qualified models
-python3 run_random_coding_challenge.py \
-    --runs 10 \
-    --delay-between-runs 30 \
-    --disqualification-threshold 3 \
-    --verbose
-
-# Include expensive models in selection
-python3 run_random_coding_challenge.py \
-    --include-expensive \
-    --runs 5
-```
+The system provides automated testing across qualified models with configurable parameters including:
+- Number of runs and delays between runs
+- Disqualification thresholds
+- Option to include expensive models
+- Verbose logging capabilities
 
 ### **Analytics Generation**
-```bash
-# Analyze all results and generate reports
-python3 analyze_challenge_statistics.py \
-    --base-directory /volumes/Serendipity/ValyrianGames/CodingChallenge \
-    --save-markdown \
-    --sort-by acceptance_rate
-
-# Generate all visualizations
-python3 visualize_model_analytics.py \
-    --data-file model_cost_summary.json \
-    --chart all \
-    --save \
-    --format png
-```
+The system provides comprehensive analytics and visualization capabilities including:
+- Statistical analysis with markdown report generation
+- Sortable metrics by various criteria (acceptance rate, cost, etc.)
+- Professional visualizations in multiple formats (PNG, SVG, PDF)
+- Executive dashboards and performance heatmaps
 
 ## 📁 Directory Structure
 
