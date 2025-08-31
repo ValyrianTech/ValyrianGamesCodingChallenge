@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829005103429893",
+  "timestamp": "2025-08-29T02:55:37.911528",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a number `n`. Your task is to find the smallest prime number that can be formed by permuting the digits of `n`. If no prime number can be formed, return -1.\n\n**Example:**\n\n- For `n = 197`, the smallest prime permutation is `179`.\n- For `n = 123`, the smallest prime permutation is `113`.\n- For `n = 111`, the result is `-1` since no permutation is a prime.\n\n**Constraints:**\n\n- `n` is a positive integer with at most 9 digits.",
+    "example_code": "# /// script\n# dependencies = ['sympy']\n# ///\nfrom itertools import permutations\nfrom sympy import isprime\n\ndef smallest_prime_permutation(n):\n    str_n = str(n)\n    permuted_numbers = set(int(''.join(p)) for p in permutations(str_n))\n    prime_numbers = [num for num in permuted_numbers if isprime(num)]\n    return min(prime_numbers) if prime_numbers else -1\n\n# Test the function with an example\nsmallest_prime_permutation(197)",
+    "expected_answer": 179
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756428730.json",
+      "answer": 179,
+      "python_code": "\nfrom itertools import permutations\n\n# Function to check if a number is prime\ndef is_prime(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\n# Function to find the smallest prime permutation\ndef smallest_prime_permutation(n):\n    digits = str(n)\n    min_prime = float('inf')\n    found_prime = False\n    for perm in permutations(digits):\n        num = int(''.join(perm))\n        if is_prime(num):\n            found_prime = True\n            min_prime = min(min_prime, num)\n    return min_prime if found_prime else -1\n\n# Test the function with an example\nn = 197\nsmallest_prime_permutation(n)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756428789.json",
+      "answer": 179,
+      "python_code": "\nfrom itertools import permutations\nimport sympy\n\ndef smallest_prime_permutation(n):\n    # Convert the number to a string to get its digits\n    str_n = str(n)\n    # Generate all unique permutations of the digits\n    permuted_numbers = set(int(''.join(p)) for p in permutations(str_n))\n    # Filter out non-prime numbers\n    prime_permutations = filter(sympy.isprime, permuted_numbers)\n    # Return the smallest prime or -1 if none found\n    return min(prime_permutations, default=-1)\n\n# Test the function with an example\nsmallest_prime_permutation(197)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756428853.json",
+      "answer": 179,
+      "python_code": "import itertools\n\ndef is_prime(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef smallest_prime_permutation(n):\n    digits = str(n)\n    permutations = set(int(''.join(p)) for p in itertools.permutations(digits))\n    prime_permutations = [num for num in permutations if is_prime(num)]\n    return min(prime_permutations) if prime_permutations else -1\n\n# Example usage\nn = 197\nsmallest_prime_permutation(n)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756428892.json",
+      "answer": 179,
+      "python_code": "\nfrom itertools import permutations\n\n# Helper function to check if a number is prime\ndef is_prime(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\n# Function to find the smallest prime permutation\ndef smallest_prime_permutation(n):\n    str_n = str(n)\n    min_prime = float('inf')\n    # Generate all unique permutations of the digits\n    for perm in set(permutations(str_n)):\n        # Convert permutation tuple to integer\n        perm_num = int(''.join(perm))\n        # Check if it is a prime number\n        if is_prime(perm_num):\n            min_prime = min(min_prime, perm_num)\n    # Return the smallest prime found or -1 if none\n    return min_prime if min_prime != float('inf') else -1\n\n# Test the function with an example input\nn = 197\nanswer = smallest_prime_permutation(n)\nanswer\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756428936.json",
+      "answer": 179,
+      "python_code": "\nfrom itertools import permutations\nfrom sympy import isprime\n\ndef smallest_prime_permutation(n):\n    str_n = str(n)\n    perm = set(permutations(str_n))\n    perm_numbers = sorted(int(''.join(p)) for p in perm)\n    for number in perm_numbers:\n        if isprime(number):\n            return number\n    return -1\n\nn = 197\nsmallest_prime_permutation(n)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4o-2024-08-06",
+    "temperature": 0.26,
+    "total_completion_tokens": 7196,
+    "total_cost": 0.21709,
+    "total_elapsed_time": 111.49870399999999,
+    "tokens_per_second": 64.53886674772471
+  }
+}

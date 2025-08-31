@@ -1,0 +1,51 @@
+{
+  "conversation_id": "20250829012344113858",
+  "timestamp": "2025-08-29T03:42:08.861427",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 3,
+    "correct_answers": 3,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer N greater than 1000 such that the decimal representation of N\u00b2 ends with the digits of N. For example, 5 is valid because 5\u00b2 = 25 ends with 5, and 76 is valid because 76\u00b2 = 5776 ends with 76. Your answer must be the integer N.",
+    "example_code": "n = 1001\nwhile True:\n    s = str(n)\n    k = len(s)\n    if n**2 % (10**k) == n:\n        print(n)\n        break\n    n += 1",
+    "expected_answer": 9376
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756430984.json",
+      "answer": 9376,
+      "python_code": "n = 1001\nwhile True:\n    d = len(str(n))\n    modulus = 10 ** d\n    if (n * n) % modulus == n:\n        print(n)\n        break\n    n += 1",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756431321.json",
+      "answer": 9376,
+      "python_code": "def find_automorphic():\n    n = 1001\n    while True:\n        s = str(n)\n        k = len(s)\n        modulus = 10**k\n        if (n * n) % modulus == n:\n            return n\n        n += 1\n\nprint(find_automorphic())",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756431725.json",
+      "answer": 9376,
+      "python_code": "def find_automorphic():\n    n = 1001\n    while True:\n        n_str = str(n)\n        square = n * n\n        square_str = str(square)\n        if square_str.endswith(n_str):\n            return n\n        n += 1\n\nresult = find_automorphic()\nprint(result)",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "temperature": 0.31,
+    "total_completion_tokens": 37518,
+    "total_cost": 0.1492244,
+    "total_elapsed_time": 860.7756180000001,
+    "tokens_per_second": 43.5862717477669
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250825165120464030",
+  "timestamp": "2025-08-25T18:54:09.593323",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 2,
+    "success_rate": 0.4,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Given a list of integers, find the length of the longest consecutive sequence. For example, if the input list is [100, 4, 200, 1, 3, 2], the longest consecutive sequence is [1, 2, 3, 4], so the answer is 4.",
+    "example_code": "def longest_consecutive(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    nums_set = set(nums)\n    longest_streak = 0\n    for num in nums:\n        if num - 1 not in nums_set:\n            current_num = num\n            current_streak = 1\n            while current_num + 1 in nums_set:\n                current_num += 1\n                current_streak += 1\n            longest_streak = max(longest_streak, current_streak)\n    return longest_streak\n\n# Example usage:\nprint(longest_consecutive([100, 4, 200, 1, 3, 2]))",
+    "expected_answer": 4
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756140723.json",
+      "error": "Expecting ',' delimiter: line 3 column 20 (char 36)"
+    },
+    {
+      "filename": "challenge_candidate_solution_1756140757.json",
+      "error": "Expecting ',' delimiter: line 3 column 20 (char 36)"
+    },
+    {
+      "filename": "challenge_candidate_solution_1756140789.json",
+      "answer": 4,
+      "python_code": "def longest_consecutive(nums):\n    if not nums:\n        return 0\n    nums_set = set(nums)\n    longest_streak = 0\n    for num in nums:\n        if num - 1 not in nums_set:\n            current_num = num\n            current_streak = 1\n            while current_num + 1 in nums_set:\n                current_num += 1\n                current_streak += 1\n            longest_streak = max(longest_streak, current_streak)\n    return longest_streak\n\n# Example usage:\nprint(longest_consecutive([100, 4, 200, 1, 3, 2]))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756140819.json",
+      "answer": 4,
+      "python_code": "def longest_consecutive(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    nums_set = set(nums)\n    longest_streak = 0\n    for num in nums:\n        if num - 1 not in nums_set:\n            current_num = num\n            current_streak = 1\n            while current_num + 1 in nums_set:\n                current_num += 1\n                current_streak += 1\n            longest_streak = max(longest_streak, current_streak)\n    return longest_streak\n\n# Test the function\nprint(longest_consecutive([100, 4, 200, 1, 3, 2]))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756140849.json",
+      "error": "Expecting ',' delimiter: line 3 column 20 (char 36)"
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:pixtral-12b-2409",
+    "temperature": 0.32,
+    "total_completion_tokens": 1289,
+    "total_cost": 0.0021293999999999996,
+    "total_elapsed_time": 19.046242000000003,
+    "tokens_per_second": 67.67739273710792
+  }
+}

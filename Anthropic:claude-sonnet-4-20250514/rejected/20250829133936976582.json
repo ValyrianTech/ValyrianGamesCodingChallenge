@@ -1,0 +1,29 @@
+{
+  "conversation_id": "20250829133936976582",
+  "timestamp": "2025-08-29T15:44:37.272001",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 0,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false,
+    "failure_reason": "Challenge file did not appear in time",
+    "failure_type": "TIMEOUT"
+  },
+  "status": "REJECTED",
+  "solution_attempts": [],
+  "performance_metrics": {
+    "model_name": "Anthropic:claude-sonnet-4-20250514",
+    "temperature": 0.13,
+    "total_completion_tokens": 266,
+    "total_cost": 0.09283799999999999,
+    "total_elapsed_time": 31.286757999999992,
+    "tokens_per_second": 8.501999472108936
+  }
+}

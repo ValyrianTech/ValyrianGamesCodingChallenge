@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250830230340503816",
+  "timestamp": "2025-08-31T01:15:48.503732",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 4,
+    "correct_answers": 4,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all numbers that can be written as the sum of the fifth powers of their digits. Note: Single-digit numbers (1-9) are excluded as they are trivially equal to their own fifth power. For example, 4150 = 4^5 + 1^5 + 5^5 + 0^5 is valid, but 1 = 1^5 is excluded.",
+    "example_code": "total = 0\nfor num in range(2, 354295):\n    if num == sum(int(d)**5 for d in str(num)):\n        total += num\nprint(total)",
+    "expected_answer": 443839
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756595225.json",
+      "answer": 443839,
+      "python_code": "upper_limit = 6 * 9**5\n\ntotal = 0\nfor n in range(10, upper_limit + 1):\n    if n == sum(int(d)**5 for d in str(n)):\n        total += n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756595321.json",
+      "answer": 443839,
+      "python_code": "total = 0\nfor num in range(10, 354295):\n    s = str(num)\n    if sum(int(d)**5 for d in s) == num:\n        total += num\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756595516.json",
+      "answer": 443839,
+      "python_code": "upper_bound = 6 * (9 ** 5)\ntotal = 0\nfor n in range(10, upper_bound + 1):\n    if n == sum(int(d) ** 5 for d in str(n)):\n        total += n\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756595727.json",
+      "answer": 443839,
+      "python_code": "upper_bound = 6 * (9 ** 5)\ntotal = 0\nfor n in range(10, upper_bound + 1):\n    if n == sum(int(d)**5 for d in str(n)):\n        total += n\nprint(total)",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "temperature": 0.32,
+    "total_completion_tokens": 30137,
+    "total_cost": 0.13138245,
+    "total_elapsed_time": 548.7448049999999,
+    "tokens_per_second": 54.91988211168579
+  }
+}

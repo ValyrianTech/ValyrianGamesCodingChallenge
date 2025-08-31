@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250824231239164145",
+  "timestamp": "2025-08-25T01:22:09.279828",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 4,
+    "correct_answers": 4,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "A self-descriptive number is an integer m with exactly d digits in decimal representation such that the digit at position i (0-indexed) counts how many times digit i occurs in m. For example, 1210 is self-descriptive (one 1, two 2s, one 0). Find all self-descriptive numbers in base 10 with at most 10 digits and compute the sum of these numbers. Submit the sum as the answer.",
+    "example_code": "numbers = [1210, 2020, 21200, 3211000, 42101000, 521001000, 6210001000]\nprint(sum(numbers))",
+    "expected_answer": 6776338430
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756077270.json",
+      "answer": 6776338430,
+      "python_code": "def find_self_descriptive_numbers(max_digits=10):\n    results = []\n    for d in range(1, max_digits+1):\n        def dfs(pos, rem, current):\n            if pos == d:\n                if rem == 0:\n                    a = current\n                    if a[0] == 0:\n                        return\n                    if all(a[i] == a.count(i) for i in range(d)):\n                        num = int(''.join(str(x) for x in a))\n                        results.append(num)\n                return\n            for x in range(rem+1):\n                current.append(x)\n                dfs(pos+1, rem-x, current)\n                current.pop()\n        dfs(0, d, [])\n    return sorted(results)\n\nnums = find_self_descriptive_numbers()\nprint(nums, sum(nums))\nsum(nums)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756077558.json",
+      "answer": 6776338430,
+      "python_code": "def find_self_descriptive(max_d=10):\n    results = []\n    for d in range(1, max_d + 1):\n        # Backtracking with constraints: sum of digits = d, weighted sum = d\n        def backtrack(i, rem_d, rem_w, current):\n            if i == d:\n                if rem_d == 0 and rem_w == 0:\n                    # verify self-descriptive property\n                    if all(current.count(j) == current[j] for j in range(d)):\n                        # ensure exactly d-digit number (no leading zero)\n                        if current[0] != 0:\n                            results.append(int(''.join(str(x) for x in current)))\n                return\n            # Determine max digit at position i\n            max_digit = rem_d\n            if i > 0:\n                max_digit = min(max_digit, rem_w // i)\n            for dig in range(max_digit + 1):\n                backtrack(i + 1, rem_d - dig, rem_w - i * dig, current + [dig])\n        backtrack(0, d, d, [])\n    return results\n\n# Find and print all self-descriptive numbers and their sum\nnums = find_self_descriptive(10)\nprint(nums)\nprint(sum(nums))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756077649.json",
+      "answer": 6776338430,
+      "python_code": "solutions = []\ndef find_self_descriptive():\n    sols=[]\n    for d in range(1,11):\n        def gen(i, rest, cur):\n            if i == d:\n                if rest == 0:\n                    valid = True\n                    for idx, val in enumerate(cur):\n                        if cur.count(idx) != val:\n                            valid = False\n                            break\n                    if valid:\n                        sols.append((d, cur.copy()))\n                return\n            for x in range(rest + 1):\n                cur.append(x)\n                gen(i + 1, rest - x, cur)\n                cur.pop()\n        gen(0, d, [])\n    return sols\n\nsolutions = find_self_descriptive()\nnumbers = []\nfor d, arr in solutions:\n    num = int(''.join(str(x) for x in arr))\n    numbers.append(num)\nprint(numbers)\nprint(sum(numbers))\n# return sum\nsum(numbers)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756077725.json",
+      "answer": 6776338430,
+      "python_code": "def find_self_descriptive():\n    res = []\n    def gen(d, i, prefix, sum_so_far):\n        if i == d:\n            if sum_so_far == d and prefix[0] != 0 and all(prefix[i] == prefix.count(i) for i in range(d)):\n                res.append(int(''.join(map(str, prefix))))\n            return\n        start = 1 if i == 0 else 0\n        for v in range(start, min(d - sum_so_far, 9) + 1):\n            gen(d, i + 1, prefix + [v], sum_so_far + v)\n    for d in range(1, 11):\n        gen(d, 0, [], 0)\n    return res\n\nnums = find_self_descriptive()\nprint(\"Self-descriptive numbers:\", nums)\nprint(\"Sum:\", sum(nums))",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:o4-mini-2025-04-16",
+    "temperature": 0.26,
+    "total_completion_tokens": 24210,
+    "total_cost": 0.1307988,
+    "total_elapsed_time": 246.35266199999998,
+    "tokens_per_second": 98.27375033601221
+  }
+}

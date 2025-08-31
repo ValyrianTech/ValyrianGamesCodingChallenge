@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829065246514939",
+  "timestamp": "2025-08-29T09:00:13.696399",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Compute the number of distinct 7-digit prime numbers that can be formed by using each of the digits 1 through 7 exactly once (i.e., all permutations of the digits 1..7). Your program should output only a single integer: the count of such prime numbers.",
+    "example_code": "import itertools\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    if n % 3 == 0:\n        return n == 3\n    i = 5\n    w = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += w\n        w = 6 - w\n    return True\n\ncount = 0\nfor p in itertools.permutations('1234567'):\n    n = int(''.join(p))\n    if is_prime(n):\n        count += 1\n\nprint(count)\n",
+    "expected_answer": 534
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756450507.json",
+      "answer": 534,
+      "python_code": "from itertools import permutations\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nfor p in permutations('1234567'):\n    n = int(''.join(p))\n    if is_prime(n):\n        count += 1\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756450592.json",
+      "answer": 534,
+      "python_code": "from itertools import permutations\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(math.isqrt(n))\n    f = 3\n    while f <= r:\n        if n % f == 0:\n            return False\n        f += 2\n    return True\n\ncount = 0\nfor p in permutations('1234567', 7):\n    n = int(''.join(p))\n    if is_prime(n):\n        count += 1\n\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756450673.json",
+      "answer": 534,
+      "python_code": "from itertools import permutations\n\ndef sieve(n):\n    sieve = [True] * (n + 1)\n    sieve[0] = sieve[1] = False\n    for i in range(2, int(n**0.5) + 1):\n        if sieve[i]:\n            step = i\n            start = i * i\n            sieve[start:n+1:step] = [False] * (((n - start) // step) + 1)\n    return [i for i, prime in enumerate(sieve) if prime]\n\nprimes = sieve(3200)\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    for p in primes:\n        if p * p > n:\n            break\n        if n % p == 0:\n            return False\n    return True\n\ncount = 0\nfor perm in permutations('1234567', 7):\n    num = int(''.join(perm))\n    if is_prime(num):\n        count += 1\nprint(count)\ncount\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756450742.json",
+      "answer": 534,
+      "python_code": "from itertools import permutations\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(n**0.5)\n    i = 3\n    while i <= r:\n        if n % i == 0:\n            return False\n        i += 2\n    return True\n\ncount = 0\n# iterate over all permutations of digits 1..7\nfor p in permutations('1234567', 7):\n    n = int(''.join(p))\n    if is_prime(n):\n        count += 1\n\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756450812.json",
+      "answer": 534,
+      "python_code": "import itertools\nimport math\n\n\ndef is_prime(n: int) -> bool:\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ncount = 0\nprimes = []\nfor p in itertools.permutations('1234567', 7):\n    n = int(''.join(p))\n    if is_prime(n):\n        count += 1\n        primes.append(n)\n\nprint(count)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.08,
+    "total_completion_tokens": 17681,
+    "total_cost": 0.0438565,
+    "total_elapsed_time": 256.395921,
+    "tokens_per_second": 68.95975540890139
+  }
+}

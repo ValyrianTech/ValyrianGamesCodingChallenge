@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829011427856323",
+  "timestamp": "2025-08-29T03:22:38.544392",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all distinct integers greater than 9 which are equal to the sum of the factorials of their decimal digits. For example, 145 = 1! + 4! + 5!. Compute the sum of all such numbers and provide the result as a single integer (the password). You may use Python; solutions should use a reasonable upper bound (hint: 7 * 9! is sufficient).",
+    "example_code": "from math import factorial\n\n# Precompute factorials for digits 0-9\nfacts = [factorial(i) for i in range(10)]\n\n# Upper bound: for d digits, maximum sum of digit factorials is d*9!\n# Find reasonable search limit: 7 * 9! = 2540160 (enough for this problem)\nlimit = 7 * facts[9]\n\nresults = []\nfor n in range(10, limit + 1):  # exclude 1..9 since trivial\n    s = sum(facts[int(d)] for d in str(n))\n    if s == n:\n        results.append(n)\n\ntotal = sum(results)\nprint(total)\nprint(results)\n\n# Return the total as the return value as well\ntotal\n",
+    "expected_answer": 40730
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756430219.json",
+      "answer": 40730,
+      "python_code": "from math import factorial\n\n# Precompute factorials for digits 0-9\nfact = [factorial(i) for i in range(10)]\n\n# Upper bound hint: 7 * 9!\nlimit = 7 * fact[9]\n\nresults = []\nfor n in range(10, limit + 1):\n    if n == sum(fact[int(d)] for d in str(n)):\n        results.append(n)\n\nprint(results)\nprint(sum(results))\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756430329.json",
+      "answer": 40730,
+      "python_code": "from math import factorial\n\n# Precompute factorials for digits 0-9\nfact = {str(i): factorial(i) for i in range(10)}\n\n# Upper bound as hinted: 7 * 9!\nupper = 7 * factorial(9)\n\nmatches = []\nfor n in range(10, upper + 1):\n    if sum(fact[d] for d in str(n)) == n:\n        matches.append(n)\n\ntotal = sum(matches)\nprint(matches)\nprint(total)\n\n# return the total as the tool return value\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756430406.json",
+      "answer": 40730,
+      "python_code": "# compute numbers equal to sum of factorials of digits\\nfrom math import factorial\\nfact = [factorial(i) for i in range(10)]\\nupper = 7 * fact[9]\\nmatches = []\\nfor n in range(10, upper+1):\\n    s = sum(fact[int(d)] for d in str(n))\\n    if s == n:\\n        matches.append(n)\\nprint(matches)\\nprint(sum(matches))\\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756430482.json",
+      "answer": 40730,
+      "python_code": "from math import factorial\n\n# Precompute factorials for digits 0-9\nfact = [factorial(i) for i in range(10)]\n\n# Upper bound: 7 * 9! as suggested\nlimit = 7 * fact[9]\n\nmatches = []\nfor n in range(10, limit + 1):\n    if n == sum(fact[int(d)] for d in str(n)):\n        matches.append(n)\n\nprint('Matches found:', matches)\nprint('Sum:', sum(matches))\n\n# Return the sum as the tool return value\nsum(matches)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756430555.json",
+      "answer": 40730,
+      "python_code": "import math\nfact = [math.factorial(i) for i in range(10)]\nlimit = 7 * fact[9]\nresults = []\nfor n in range(10, limit + 1):\n    if sum(fact[int(d)] for d in str(n)) == n:\n        results.append(n)\nprint(\"Found numbers:\", results)\nprint(\"Sum:\", sum(results))\nsum(results)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.03,
+    "total_completion_tokens": 17461,
+    "total_cost": 0.04347499999999999,
+    "total_elapsed_time": 282.288259,
+    "tokens_per_second": 61.8552116260705
+  }
+}

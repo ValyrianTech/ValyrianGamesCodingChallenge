@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827214131392603",
+  "timestamp": "2025-08-27T23:47:05.332671",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Write a Python program to find and sum all four-digit self-descriptive numbers. A self-descriptive number is an n-digit number where the digit at position i (0-indexed) equals the count of digit i in the entire number. For 4-digit numbers, examples include 1210 and 2020. Your program should output the sum of all such numbers.",
+    "example_code": "def is_self_descriptive(num_str):\n    length = len(num_str)\n    for i in range(length):\n        if num_str.count(str(i)) != int(num_str[i]):\n            return False\n    return True\n\nresults = []\nfor num in range(1000, 10000):\n    s = str(num)\n    if is_self_descriptive(s):\n        results.append(num)\nres_sum = sum(results)\nprint(res_sum)",
+    "expected_answer": 3230
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756331005.json",
+      "answer": 3230,
+      "python_code": "def is_self_descriptive(num):\n    s = str(num)\n    for i, ch in enumerate(s):\n        if s.count(str(i)) != int(ch):\n            return False\n    return True\n\nnums = [n for n in range(1000, 10000) if is_self_descriptive(n)]\nprint(nums, sum(nums))\nsum(nums)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756331056.json",
+      "answer": 3230,
+      "python_code": "ans = []\nfor num in range(1000,10000):\n    s = str(num)\n    # check each position i matches count of digit i\n    if all(s.count(str(i)) == int(s[i]) for i in range(4)):\n        ans.append(num)\nprint(sum(ans))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756331112.json",
+      "answer": 3230,
+      "python_code": "total = 0\nfor x in range(1000,10000):\n    s = str(x)\n    if all(s.count(str(i)) == int(s[i]) for i in range(4)):\n        total += x\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756331164.json",
+      "answer": 3230,
+      "python_code": "def is_self_descriptive(num):\n    s = str(num)\n    return all(s[i] == str(s.count(str(i))) for i in range(len(s)))\n\nresult = [num for num in range(1000, 10000) if is_self_descriptive(num)]\nprint('Self-descriptive numbers:', result)\nprint('Sum:', sum(result))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756331223.json",
+      "answer": 3230,
+      "python_code": "numbers = []\nfor num in range(1000, 10000):\n    s = str(num)\n    counts = [s.count(str(i)) for i in range(4)]\n    if all(int(s[i]) == counts[i] for i in range(4)):\n        numbers.append(num)\nprint(numbers)\nprint(sum(numbers))\nsum(numbers)",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:o4-mini-2025-04-16",
+    "temperature": 0.6,
+    "total_completion_tokens": 16170,
+    "total_cost": 0.1041062,
+    "total_elapsed_time": 150.826778,
+    "tokens_per_second": 107.20907927901239
+  }
+}

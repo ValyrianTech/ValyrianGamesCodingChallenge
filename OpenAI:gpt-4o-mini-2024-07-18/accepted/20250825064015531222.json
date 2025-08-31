@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250825064015531222",
+  "timestamp": "2025-08-25T08:44:14.915227",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Create a function that takes a string as input and returns the number of unique characters in that string. However, the function should ignore all vowels (a, e, i, o, u) and consider only the consonants. The function should also be case-insensitive.",
+    "example_code": "def unique_consonants_count(s):\n    vowels = set('aeiouAEIOU')\n    consonants = set()\n    for char in s:\n        if char.isalpha() and char not in vowels:\n            consonants.add(char.lower())\n    return len(consonants)",
+    "expected_answer": 7
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756104074.json",
+      "answer": 7,
+      "python_code": "def unique_consonants_count(s: str) -> int:\n    vowels = set('aeiou')\n    unique_consonants = set()\n    \n    for char in s.lower():\n        if char.isalpha() and char not in vowels:\n            unique_consonants.add(char)\n    \n    return len(unique_consonants)\n\n# Example usage:\ninput_string = \"Hello World\"\nresult = unique_consonants_count(input_string)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756104118.json",
+      "answer": 7,
+      "python_code": "def unique_consonants_count(s):\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    unique_consonants = set()\n    \n    for char in s.lower():\n        if char.isalpha() and char not in vowels:\n            unique_consonants.add(char)\n    \n    return len(unique_consonants)\n\n# Example usage:\ninput_string = \"Hello World!\"\nresult = unique_consonants_count(input_string)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756104156.json",
+      "answer": 7,
+      "python_code": "def unique_consonants_count(s):\n    vowels = set('aeiou')\n    unique_consonants = set()\n    for char in s.lower():\n        if char.isalpha() and char not in vowels:\n            unique_consonants.add(char)\n    return len(unique_consonants)\n\n# Example usage\nresult = unique_consonants_count('Hello World')\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756104204.json",
+      "answer": 7,
+      "python_code": "def count_unique_consonants(input_string):\n    # Normalize the string to lowercase\n    input_string = input_string.lower()\n    # Define vowels\n    vowels = set('aeiou')\n    # Set to store unique consonants\n    unique_consonants = set()\n    \n    # Iterate through each character in the string\n    for char in input_string:\n        if char.isalpha() and char not in vowels:  # Check if it's a consonant\n            unique_consonants.add(char)\n    \n    # Return the count of unique consonants\n    return len(unique_consonants)\n\n# Example usage\nresult = count_unique_consonants(\"Hello World\")\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756104251.json",
+      "answer": 7,
+      "python_code": "def count_unique_consonants(input_string):\n    # Define vowels\n    vowels = \"aeiouAEIOU\"\n    # Create a set to store unique consonants\n    unique_consonants = set()\n    \n    # Iterate through each character in the string\n    for char in input_string:\n        # Check if the character is a consonant\n        if char.isalpha() and char not in vowels:\n            unique_consonants.add(char.lower())  # Add consonant in lower case for uniqueness\n    \n    # Return the number of unique consonants\n    return len(unique_consonants)\n\n# Example input for testing\nresult = count_unique_consonants(\"Hello World!\")",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4o-mini-2024-07-18",
+    "temperature": 0.84,
+    "total_completion_tokens": 3354,
+    "total_cost": 0.0066259499999999985,
+    "total_elapsed_time": 86.764778,
+    "tokens_per_second": 38.65623905589892
+  }
+}

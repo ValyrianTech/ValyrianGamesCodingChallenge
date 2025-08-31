@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827025100759282",
+  "timestamp": "2025-08-27T04:55:06.482720",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all positive integers that are equal to the sum of the fifth powers of their decimal digits. In other words, find every integer n such that n = \u03a3 (digit_i)^5, and output the sum of all such n. (Exclude the trivial single\u2011digit numbers 0\u20119, which trivially satisfy the condition.)",
+    "example_code": "def sum_fifth_power_numbers():\\n    total = 0\\n    # Upper bound: 6 * 9**5 = 354294, so checking up to 1,000,000 is safe\\n    for n in range(2, 1000000):\\n        if n == sum(int(d) ** 5 for d in str(n)):\\n            total += n\\n    return total\\n\\nprint(sum_fifth_power_numbers())",
+    "expected_answer": 443839
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756263138.json",
+      "answer": 443839,
+      "python_code": "max_digit_power = 9**5\nmax_digits = 1\nwhile 10**(max_digits-1) <= max_digits * max_digit_power:\n    max_digits += 1\nmax_digits -= 1\nupper = max_digits * max_digit_power\nresults = []\nfor n in range(10, upper+1):\n    if n == sum(int(d)**5 for d in str(n)):\n        results.append(n)\nprint('results', results)\nprint('sum', sum(results))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756263187.json",
+      "answer": 443839,
+      "python_code": "def sum_fifth_powers(limit):\n    total = 0\n    for n in range(10, limit + 1):\n        if n == sum(int(d) ** 5 for d in str(n)):\n            total += n\n    return total\n\nlimit = 6 * 9 ** 5\nanswer = sum_fifth_powers(limit)\nanswer",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756263226.json",
+      "answer": 443839,
+      "python_code": "def sum_fifth_powers():\n    limit = 6 * 9**5  # maximum possible sum for a 6\u2011digit number\n    results = []\n    for n in range(10, limit + 1):\n        if n == sum(int(d) ** 5 for d in str(n)):\n            results.append(n)\n    return sum(results), results\n\nanswer, numbers = sum_fifth_powers()\nprint('Answer:', answer)\nprint('Numbers:', numbers)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756263268.json",
+      "answer": 443839,
+      "python_code": "def sum_fifth_powers(limit=1000000):\n    results = []\n    for n in range(10, limit):\n        if n == sum(int(d)**5 for d in str(n)):\n            results.append(n)\n    return results, sum(results)\n\nnums, total = sum_fifth_powers(1000000)\nprint(nums)\nprint(total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756263302.json",
+      "answer": 443839,
+      "python_code": "max_digit = 6\nmax_sum = max_digit * 9**5\nresults = []\nfor n in range(10, max_sum + 1):\n    if n == sum(int(d)**5 for d in str(n)):\n        results.append(n)\nprint('Numbers:', results)\nprint('Sum:', sum(results))",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Groq:openai/gpt-oss-120b",
+    "temperature": 0.37,
+    "total_completion_tokens": 20019,
+    "total_cost": 0.018439349999999997,
+    "total_elapsed_time": 67.14099699999998,
+    "tokens_per_second": 298.1635795488709
+  }
+}

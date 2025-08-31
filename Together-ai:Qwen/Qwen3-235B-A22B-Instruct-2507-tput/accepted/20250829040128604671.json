@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829040128604671",
+  "timestamp": "2025-08-29T06:05:48.643761",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer n such that the sum of the digits of n\u00b2 equals n. For example, if n = 9, then n\u00b2 = 81, and the sum of digits of 81 is 8 + 1 = 9, which equals n. However, 9 is not the smallest such number (smaller solutions exist). Find the smallest positive integer n that satisfies this property.",
+    "example_code": "def digit_sum(n):\n    return sum(int(digit) for digit in str(n))\n\ndef find_smallest_n():\n    n = 1\n    while True:\n        if digit_sum(n * n) == n:\n            return n\n        n += 1\n        if n > 1000:\n            return None\n\nresult = find_smallest_n()\nresult",
+    "expected_answer": 1
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756440145.json",
+      "answer": 1,
+      "python_code": "def digit_sum(n):\n    return sum(int(d) for d in str(n))\n\nn = 1\nwhile True:\n    if digit_sum(n * n) == n:\n        break\n    n += 1\nn",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756440216.json",
+      "answer": 1,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\n# Brute-force search for the smallest positive integer n\nn = 1\nwhile True:\n    square = n ** 2\n    if sum_of_digits(square) == n:\n        break\n    n += 1\nn",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756440259.json",
+      "answer": 1,
+      "python_code": "def digit_sum(n):\n    return sum(int(d) for d in str(n))\n\nn = 1\nwhile True:\n    if digit_sum(n * n) == n:\n        break\n    n += 1\nn",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756440300.json",
+      "answer": 1,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\nn = 1\nwhile True:\n    square = n * n\n    if sum_of_digits(square) == n:\n        break\n    n += 1\nn",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756440343.json",
+      "answer": 1,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\n# Iterate through positive integers starting from 1\ndef find_smallest_n():\n    n = 1\n    while True:\n        square = n ** 2\n        if sum_of_digits(square) == n:\n            return n\n        n += 1\n\nresult = find_smallest_n()\nresult",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+    "temperature": 0.77,
+    "total_completion_tokens": 2993,
+    "total_cost": 0.009609000000000001,
+    "total_elapsed_time": 90.90601899999999,
+    "tokens_per_second": 32.9241125386868
+  }
+}

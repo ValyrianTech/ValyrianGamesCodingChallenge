@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250826074729053018",
+  "timestamp": "2025-08-26T09:51:09.475043",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 2,
+    "success_rate": 0.4,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "You are given a list of integers. Your task is to find the maximum sum of a contiguous subarray within the list. However, there is a twist: you must also ensure that the subarray contains at least one even number. If no such subarray exists, return 0.\n\n**Example:**\nFor the list `[1, 2, 3, 4, -1, 2, 1, -5, 4]`, the maximum sum of a contiguous subarray containing at least one even number is `10` (subarray `[4, -1, 2, 1, -5, 4]`).\n\n**Constraints:**\n- The list will contain between 1 and 1000 integers.\n- Each integer will be between -1000 and 1000.\n\n**Expected Output:**\nA single integer representing the maximum sum of a contiguous subarray containing at least one even number.",
+    "example_code": "def max_sum_with_even(arr):\n    max_sum = float('-inf')\n    current_sum = 0\n    has_even = False\n\n    for num in arr:\n        if num % 2 == 0:\n            has_even = True\n        current_sum += num\n        if current_sum > max_sum and has_even:\n            max_sum = current_sum\n        if current_sum < 0:\n            current_sum = 0\n            has_even = False\n\n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\narr = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_with_even(arr))",
+    "expected_answer": 10
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756194512.json",
+      "answer": 10,
+      "python_code": "def max_sum_subarray_with_even(nums):\n    max_sum = float('-inf')\n    current_sum = 0\n    has_even = False\n    \n    for num in nums:\n        if num % 2 == 0:\n            has_even = True\n        \n        current_sum += num\n        if current_sum > max_sum and has_even:\n            max_sum = current_sum\n        \n        if current_sum < 0:\n            current_sum = 0\n            has_even = False\n    \n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\nnums = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_subarray_with_even(nums))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756194548.json",
+      "answer": 12,
+      "python_code": "# /// script\n# dependencies = []\n# ///\n\ndef max_sum_subarray_with_even(nums):\n    max_sum = float('-inf')\n    current_sum = 0\n    has_even = False\n    start = 0\n    for i in range(len(nums)):\n        if nums[i] % 2 == 0:\n            has_even = True\n        current_sum += nums[i]\n        if current_sum > max_sum and has_even:\n            max_sum = current_sum\n        if current_sum < 0:\n            current_sum = 0\n            has_even = False\n            start = i + 1\n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\nnums = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_subarray_with_even(nums))\n",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756194589.json",
+      "answer": 12,
+      "python_code": "def max_sum_subarray_with_even(nums):\n    max_sum = float('-inf')\n    current_sum = 0\n    contains_even = False\n    \n    for num in nums:\n        if num % 2 == 0:\n            contains_even = True\n        \n        current_sum += num\n        \n        if current_sum > max_sum and contains_even:\n            max_sum = current_sum\n        \n        if current_sum < 0:\n            current_sum = 0\n            contains_even = False\n    \n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\nnums = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_subarray_with_even(nums))  # Output should be 10",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756194630.json",
+      "answer": 12,
+      "python_code": "# /// script\n# dependencies = ['numpy']\n# ///\nimport numpy as np\n\ndef max_sum_subarray_with_even(nums):\n    max_sum = float('-inf')\n    current_sum = 0\n    has_even = False\n    start = 0\n    for i in range(len(nums)):\n        if nums[i] % 2 == 0:\n            has_even = True\n        current_sum += nums[i]\n        if current_sum > max_sum and has_even:\n            max_sum = current_sum\n        if current_sum < 0:\n            current_sum = 0\n            has_even = False\n            start = i + 1\n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\nnums = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_subarray_with_even(nums))\n",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756194669.json",
+      "answer": 10,
+      "python_code": "def max_sum_subarray_with_even(nums):\n    n = len(nums)\n    if n == 0:\n        return 0\n\n    # Boolean array to mark positions of even numbers\n    even_positions = [False] * n\n    for i in range(n):\n        if nums[i] % 2 == 0:\n            even_positions[i] = True\n\n    # Initialize variables for Kadane's algorithm\n    max_sum = float('-inf')\n    current_sum = 0\n    has_even = False\n\n    for i in range(n):\n        if even_positions[i]:\n            has_even = True\n\n        current_sum += nums[i]\n\n        if has_even:\n            if current_sum > max_sum:\n                max_sum = current_sum\n\n        if current_sum < 0:\n            current_sum = 0\n            has_even = False\n\n    return max_sum if max_sum != float('-inf') else 0\n\n# Example usage\nnums = [1, 2, 3, 4, -1, 2, 1, -5, 4]\nprint(max_sum_subarray_with_even(nums))  # Output: 10",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:mistral-small-2501",
+    "temperature": 0.11,
+    "total_completion_tokens": 6880,
+    "total_cost": 0.0077653999999999996,
+    "total_elapsed_time": 58.690503,
+    "tokens_per_second": 117.22509858196308
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250827221239776187",
+  "timestamp": "2025-08-28T00:19:05.177806",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 4,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Given a set of integers, find the number of distinct ways to partition the set into subsets such that the sum of each subset is equal. The subsets must be non-empty and each integer must be used exactly once.\n\n**Example:**\nFor the set `{1, 1, 2, 2}`, there are two ways to partition the set into subsets with equal sums:\n1. `({1, 2}, {1, 2})`\n2. `({1, 1}, {2, 2})`\n\n**Input:**\nA list of integers.\n\n**Output:**\nAn integer representing the number of distinct ways to partition the set.\n\n**Constraints:**\n- The number of integers in the set will not exceed 10.\n- The integers will be non-negative and not exceed 10.",
+    "example_code": "# /// script\n# dependencies = []\n# ///\ndef count_partitions(nums):\n    from itertools import combinations\n    \n    def can_partition(nums, target):\n        n = len(nums)\n        dp = [False] * (target + 1)\n        dp[0] = True\n        \n        for num in nums:\n            for j in range(target, num - 1, -1):\n                dp[j] = dp[j] or dp[j - num]\n        \n        return dp[target]\n    \n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return 0\n    \n    target = total_sum // 2\n    n = len(nums)\n    count = 0\n    \n    for i in range(1, 1 << n):\n        subset = [nums[j] for j in range(n) if (i & (1 << j))]\n        if sum(subset) == target and can_partition(subset, target):\n            count += 1\n    \n    return count // 2\n\n# Test the function with an example\nnums = [1, 1, 2, 2]\ncount_partitions(nums)",
+    "expected_answer": 2
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756333014.json",
+      "answer": 4,
+      "python_code": "from functools import lru_cache\nfrom typing import List\n\ndef can_partition(nums: List[int]) -> int:\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return 0\n    target = total_sum // 2\n\n    @lru_cache(None)\n    def dp(mask: int, current_sum: int) -> int:\n        if current_sum == target:\n            return 1\n        if current_sum > target:\n            return 0\n        count = 0\n        for i in range(len(nums)):\n            if not (mask & (1 << i)):\n                count += dp(mask | (1 << i), current_sum + nums[i])\n        return count\n\n    return dp(0, 0) // 2\n\n# Example usage\nnums = [1, 1, 2, 2]\nanswer = can_partition(nums)\nanswer",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333056.json",
+      "answer": 4,
+      "python_code": "from functools import lru_cache\nfrom typing import List, Tuple\ndef can_partition(nums: List[int]) -> int:\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return 0\n    target = total_sum // 2\n    nums.sort(reverse=True)\n    \n    @lru_cache(None)\n    def backtrack(index: int, current_sum: int, used: Tuple[int]) -> int:\n        if current_sum == target:\n            return 1\n        if current_sum > target:\n            return 0\n        \n        count = 0\n        for i in range(index, len(nums)):\n            if not used[i]:\n                new_used = used[:i] + (True,) + used[i+1:]\n                count += backtrack(i + 1, current_sum + nums[i], new_used)\n        \n        return count\n    \n    return backtrack(0, 0, tuple([False] * len(nums)))\n\n# Example usage\nnums = [1, 1, 2, 2]\nanswer = can_partition(nums)\nanswer",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333098.json",
+      "answer": 4,
+      "python_code": "from itertools import combinations\nfrom functools import lru_cache\n\ndef can_partition(nums, target):\n    @lru_cache(None)\n    def dp(mask):\n        if mask == 0:\n            return True\n        for i in range(len(nums)):\n            if mask & (1 << i):\n                new_mask = mask ^ (1 << i)\n                if dp(new_mask):\n                    return True\n                for j in range(i + 1, len(nums)):\n                    if mask & (1 << j):\n                        if nums[i] + nums[j] == target:\n                            new_mask = mask ^ (1 << i) ^ (1 << j)\n                            if dp(new_mask):\n                                return True\n        return False\n\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return False\n    target = total_sum // 2\n    return dp((1 << len(nums)) - 1)\n\ndef count_partitions(nums):\n    def backtrack(start, current_sum, target, used):\n        if current_sum == target:\n            return 1\n        if current_sum > target:\n            return 0\n        count = 0\n        for i in range(start, len(nums)):\n            if not used[i]:\n                used[i] = True\n                count += backtrack(i + 1, current_sum + nums[i], target, used)\n                used[i] = False\n        return count\n\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return 0\n    target = total_sum // 2\n    used = [False] * len(nums)\n    return backtrack(0, 0, target, used)\n\ndef solve(nums):\n    if not can_partition(nums, sum(nums) // 2):\n        return 0\n    return count_partitions(nums)\n\n# Example usage\nnums = [1, 1, 2, 2]\nanswer = solve(nums)\nanswer",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333140.json",
+      "answer": 4,
+      "python_code": "# /// script\n# dependencies = []\n# ///\ndef can_partition(nums, target, index, current_sum, memo):\n    if current_sum == target:\n        return 1\n    if current_sum > target or index >= len(nums):\n        return 0\n    if (index, current_sum) in memo:\n        return memo[(index, current_sum)]\n    count = 0\n    # Include nums[index] in the current subset\n    count += can_partition(nums, target, index + 1, current_sum + nums[index], memo)\n    # Exclude nums[index] from the current subset\n    count += can_partition(nums, target, index + 1, current_sum, memo)\n    memo[(index, current_sum)] = count\n    return count\n\ndef count_partitions(nums):\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return 0\n    target = total_sum // 2\n    memo = {}\n    return can_partition(nums, target, 0, 0, memo)\n\n# Example usage\nnums = [1, 1, 2, 2]\nanswer = count_partitions(nums)\nanswer",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:codestral-2501",
+    "temperature": 0.41,
+    "total_completion_tokens": 46250,
+    "total_cost": 0.07428820000000001,
+    "total_elapsed_time": 190.72629299999997,
+    "tokens_per_second": 242.49409597658362
+  }
+}

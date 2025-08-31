@@ -1,0 +1,45 @@
+{
+  "conversation_id": "20250828021113023495",
+  "timestamp": "2025-08-28T04:25:03.286432",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 2,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Count the number of 4-digit numbers (from 1000 to 9999) that are divisible by 11 and have exactly two distinct digits. The answer must be a single integer.",
+    "example_code": "count = 0\nfor num in range(1000, 10000):\n    if num % 11 == 0:\n        s = str(num)\n        if len(set(s)) == 2:\n            count += 1\nprint(count)",
+    "expected_answer": 66
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756347444.json",
+      "answer": 162,
+      "python_code": "count = 0\nfor num in range(1000, 10000):\n    if num % 11 == 0:\n        s = str(num)\n        if len(set(s)) == 2:\n            count += 1\nprint(count)",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756347681.json",
+      "answer": 648,
+      "python_code": "count = 0\nfor num in range(1000, 10000):\n    if num % 11 == 0:\n        s = str(num)\n        if len(set(s)) == 2:\n            count += 1\nprint(count)",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "temperature": 0.84,
+    "total_completion_tokens": 32899,
+    "total_cost": 0.1310943,
+    "total_elapsed_time": 675.2642810000001,
+    "tokens_per_second": 48.72018397194031
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827145953157449",
+  "timestamp": "2025-08-27T17:02:53.228160",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Write a program that reads a single integer **N** (1\u202f\u2264\u202fN\u202f\u2264\u202f12) from standard input and prints the number of derangements of the set {1,\u2026,N} (i.e., the number of permutations with no fixed points). After writing the program, run it with the input value **8**. What integer does the program output?",
+    "example_code": "import sys, math\\n\\ndef derangement(n):\\n    # Inclusion\u2011exclusion formula: !n = n! * \u03a3_{k=0}^{n} (-1)^k / k!\\n    return int(round(math.factorial(n) * sum(((-1)**k) / math.factorial(k) for k in range(n+1))))\\n\\nif __name__ == \"__main__\":\\n    n = int(sys.stdin.read().strip())\\n    print(derangement(n))  # For input 8 this prints 14833",
+    "expected_answer": 14833
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756306837.json",
+      "answer": 14833,
+      "python_code": "def derangement(n):\n    d = [0] * (n + 1)\n    d[0] = 1\n    if n >= 1:\n        d[1] = 0\n    for i in range(2, n + 1):\n        d[i] = (i - 1) * (d[i - 1] + d[i - 2])\n    return d[n]\n\nprint(derangement(8))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756306867.json",
+      "answer": 14833,
+      "python_code": "import sys\n\ndef derangement(n):\n    if n == 0:\n        return 1\n    if n == 1:\n        return 0\n    d0, d1 = 1, 0\n    for i in range(2, n + 1):\n        d0, d1 = d1, (i - 1) * (d1 + d0)\n    return d1\n\nif __name__ == \"__main__\":\n    n = int(sys.stdin.readline())\n    print(derangement(n))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756306899.json",
+      "answer": 14833,
+      "python_code": "def derangements(n):\\n    D = [0] * (n + 1)\\n    D[0] = 1\\n    if n >= 1:\\n        D[1] = 0\\n    for i in range(2, n + 1):\\n        D[i] = (i - 1) * (D[i - 1] + D[i - 2])\\n    return D[n]\\n\\nprint(derangements(8))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756306932.json",
+      "answer": 14833,
+      "python_code": "def derangements(n):\n    if n==0: return 1\n    if n==1: return 0\n    d0, d1 = 1, 0\n    for i in range(2, n+1):\n        d0, d1 = d1, (i-1)*(d1 + d0)\n    return d1\n\nif __name__ == \"__main__\":\n    import sys\n    N = int(sys.stdin.readline())\n    print(derangements(N))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756306970.json",
+      "answer": 14833,
+      "python_code": "def derangement(n):\n    if n == 0:\n        return 1\n    if n == 1:\n        return 0\n    d0, d1 = 1, 0  # D(0), D(1)\n    for i in range(2, n + 1):\n        d0, d1 = d1, (i - 1) * (d1 + d0)\n    return d1\n\nprint(derangement(8))",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Groq:openai/gpt-oss-120b",
+    "temperature": 0.94,
+    "total_completion_tokens": 6590,
+    "total_cost": 0.0077678999999999995,
+    "total_elapsed_time": 27.591883000000003,
+    "tokens_per_second": 238.8383569182284
+  }
+}

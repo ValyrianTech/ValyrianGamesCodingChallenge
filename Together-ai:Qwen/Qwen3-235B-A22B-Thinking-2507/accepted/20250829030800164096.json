@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250829030800164096",
+  "timestamp": "2025-08-29T05:22:21.962747",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 4,
+    "correct_answers": 4,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all positive integers n less than 1000 such that the sum of the digits of n\u00b3 equals n.",
+    "example_code": "def digit_sum(n):\n    return sum(int(d) for d in str(n))\n\ntotal = 0\nfor n in range(1, 1000):\n    cube = n ** 3\n    if digit_sum(cube) == n:\n        total += n\nprint(total)",
+    "expected_answer": 97
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756437169.json",
+      "answer": 97,
+      "python_code": "total = 0\nfor n in range(1, 1000):\n    cube = n ** 3\n    digit_sum = sum(int(d) for d in str(cube))\n    if digit_sum == n:\n        total += n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756437372.json",
+      "answer": 97,
+      "python_code": "total = 0\nfor n in range(1, 55):\n    cube = n ** 3\n    digit_sum = sum(int(d) for d in str(cube))\n    if digit_sum == n:\n        total += n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756437582.json",
+      "answer": 97,
+      "python_code": "total = 0\nfor n in range(1, 82):\n    cube = n ** 3\n    digit_sum = sum(int(d) for d in str(cube))\n    if digit_sum == n:\n        total += n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756437736.json",
+      "answer": 97,
+      "python_code": "total = 0\nfor n in range(1, 1000):\n    cube = n ** 3\n    s = sum(int(d) for d in str(cube))\n    if s == n:\n        total += n\nprint(total)",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "temperature": 0.24,
+    "total_completion_tokens": 26190,
+    "total_cost": 0.11369145,
+    "total_elapsed_time": 588.514653,
+    "tokens_per_second": 44.50186561455081
+  }
+}

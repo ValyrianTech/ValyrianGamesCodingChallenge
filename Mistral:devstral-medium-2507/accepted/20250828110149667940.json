@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250828110149667940",
+  "timestamp": "2025-08-28T13:04:34.082771",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 3,
+    "success_rate": 0.6,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a list of integers. Your task is to find the smallest positive integer that is not present in the list. The list may contain both positive and negative integers, and it may also contain duplicates. The solution must be efficient and should not use brute force. The final answer must be a single integer.\n\nExample:\nInput: [1, 3, 6, 4, 1, 2]\nOutput: 5\n\nInput: [1, 2, 3]\nOutput: 4\n\nInput: [-1, -3]\nOutput: 1",
+    "example_code": "def find_missing_positive(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1\n\n# Test the function with the example input\nprint(find_missing_positive([1, 3, 6, 4, 1, 2]))  # Output should be 5",
+    "expected_answer": 5
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756378949.json",
+      "answer": 5,
+      "python_code": "def find_missing_positive(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1\n\n# Example usage:\nprint(find_missing_positive([1, 3, 6, 4, 1, 2]))  # Output: 5\nprint(find_missing_positive([1, 2, 3]))  # Output: 4\nprint(find_missing_positive([-1, -3]))  # Output: 1",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756378978.json",
+      "answer": 1,
+      "python_code": "def find_smallest_missing_positive(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1\n\n# Example usage:\nprint(find_smallest_missing_positive([1, 3, 6, 4, 1, 2]))  # Output: 5\nprint(find_smallest_missing_positive([1, 2, 3]))  # Output: 4\nprint(find_smallest_missing_positive([-1, -3]))  # Output: 1",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756379008.json",
+      "answer": 1,
+      "python_code": "def find_missing_positive(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1\n\n# Example usage:\nprint(find_missing_positive([1, 3, 6, 4, 1, 2]))  # Output: 5\nprint(find_missing_positive([1, 2, 3]))  # Output: 4\nprint(find_missing_positive([-1, -3]))  # Output: 1\n",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756379044.json",
+      "answer": 5,
+      "python_code": "def find_smallest_missing_positive(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1\n\n# Example usage\nprint(find_smallest_missing_positive([1, 3, 6, 4, 1, 2]))  # Output: 5\nprint(find_smallest_missing_positive([1, 2, 3]))  # Output: 4\nprint(find_smallest_missing_positive([-1, -3]))  # Output: 1",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756379074.json",
+      "answer": 5,
+      "python_code": "def find_missing_positive(nums):\n    nums = set(nums)\n    i = 1\n    while i in nums:\n        i += 1\n    return i\n\n# Example usage\nprint(find_missing_positive([1, 3, 6, 4, 1, 2]))  # Output: 5\nprint(find_missing_positive([1, 2, 3]))  # Output: 4\nprint(find_missing_positive([-1, -3]))  # Output: 1",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:devstral-medium-2507",
+    "temperature": 0.58,
+    "total_completion_tokens": 1435,
+    "total_cost": 0.007120800000000001,
+    "total_elapsed_time": 16.039367,
+    "tokens_per_second": 89.4673711250575
+  }
+}

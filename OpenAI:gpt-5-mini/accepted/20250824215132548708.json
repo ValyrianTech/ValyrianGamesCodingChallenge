@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250824215132548708",
+  "timestamp": "2025-08-24T23:59:22.621574",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Consider all permutations of the integers 1 through 12 (each number used exactly once). Count how many permutations have the property that every pair of adjacent elements in the permutation sums to a non-prime number (i.e., their sum is composite or 1). Return the count as a single integer. Example: for the permutation [2,5,4,...], check each adjacent pair (2+5, 5+4, ...) \u2014 all such sums must be non-prime. Output only the integer count.",
+    "example_code": "# Count permutations of 1..12 such that every adjacent pair sums to a NON-prime.\n# We solve with bitmask DP. Final output: single integer (the count).\nfrom math import isqrt\n\ndef sieve(n):\n    is_prime=[True]*(n+1)\n    is_prime[0]=is_prime[1]=False\n    for p in range(2, isqrt(n)+1):\n        if is_prime[p]:\n            for q in range(p*p, n+1, p):\n                is_prime[q]=False\n    return is_prime\n\nn = 12\nmax_sum = 2*n\nis_prime = sieve(max_sum)\n\n# adjacency: allowed edge if sum is NOT prime\nedges = [[(not is_prime[(i+1)+(j+1)]) for j in range(n)] for i in range(n)]\n\nFULL = (1<<n) - 1\n# dp[mask][last] = number of ways\ndp = [[0]*n for _ in range(1<<n)]\nfor i in range(n):\n    dp[1<<i][i] = 1\n\nfor mask in range(1<<n):\n    for last in range(n):\n        cur = dp[mask][last]\n        if cur == 0: continue\n        for nxt in range(n):\n            if (mask >> nxt) & 1: continue\n            if edges[last][nxt]:\n                dp[mask | (1<<nxt)][nxt] += cur\n\nresult = sum(dp[FULL][last] for last in range(n))\nprint(result)\n",
+    "expected_answer": 2417792
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756072434.json",
+      "answer": 2417792,
+      "python_code": "import math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\nnums = list(range(1, 13))\nn = 12\nprimes = {i for i in range(2, 25) if is_prime(i)}\n# allowed edge if sum is NOT prime\nallowed = [[(nums[i] + nums[j]) not in primes for j in range(n)] for i in range(n)]\n\nfull = (1 << n) - 1\n# DP over subsets: dp[mask][last] = number of ways to form permutation with used set mask ending at last\ndp = [[0] * n for _ in range(1 << n)]\nfor i in range(n):\n    dp[1 << i][i] = 1\n\nfor mask in range(1 << n):\n    for last in range(n):\n        c = dp[mask][last]\n        if c == 0:\n            continue\n        for nxt in range(n):\n            if (mask >> nxt) & 1 == 0 and allowed[last][nxt]:\n                dp[mask | (1 << nxt)][nxt] += c\n\ntotal = sum(dp[full][i] for i in range(n))\nprint(total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756072514.json",
+      "answer": 2417792,
+      "python_code": "# Compute number of permutations of 1..12 where every adjacent sum is non-prime\nfrom itertools import combinations\n\nn = 12\nmax_sum = 2*n\n# sieve for primes up to max_sum\nis_prime = [False, False] + [True]*(max_sum-1)\nfor p in range(2, int(max_sum**0.5)+1):\n    if is_prime[p]:\n        for q in range(p*p, max_sum+1, p):\n            is_prime[q] = False\n\n# build adjacency: nodes 0..11 represent numbers 1..12\nadj = [[] for _ in range(n)]\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            continue\n        s = (i+1) + (j+1)\n        if not is_prime[s]:  # non-prime allowed\n            adj[i].append(j)\n\n# DP over subsets: dp[mask][last] = ways\nNmask = 1<<n\n# initialize dp as list of lists of ints\ndp = [ [0]*n for _ in range(Nmask) ]\nfor i in range(n):\n    dp[1<<i][i] = 1\n\nfor mask in range(Nmask):\n    for last in range(n):\n        ways = dp[mask][last]\n        if ways == 0:\n            continue\n        for nxt in adj[last]:\n            if mask & (1<<nxt):\n                continue\n            dp[mask | (1<<nxt)][nxt] += ways\n\nfull = Nmask - 1\nanswer = sum(dp[full][last] for last in range(n))\nprint(answer)\nanswer\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756072605.json",
+      "answer": 2417792,
+      "python_code": "# Count permutations of 1..12 where every adjacent sum is non-prime\nprimes = {3,5,7,11,13,17,19,23}\nN = 12\n# allowed edges between values 1..12 (indexed 0..11)\nallowed = [[False]*N for _ in range(N)]\nfor i in range(N):\n    for j in range(N):\n        if i != j:\n            s = (i+1) + (j+1)\n            allowed[i][j] = (s not in primes)\n\nFULL = (1<<N) - 1\n# dp[mask][last]\ndp = [[0]*N for _ in range(1<<N)]\nfor i in range(N):\n    dp[1<<i][i] = 1\n\nfor mask in range(1<<N):\n    for last in range(N):\n        v = dp[mask][last]\n        if v == 0:\n            continue\n        for nxt in range(N):\n            if not (mask >> nxt) & 1 and allowed[last][nxt]:\n                dp[mask | (1<<nxt)][nxt] += v\n\nanswer = sum(dp[FULL])\nprint(answer)\nanswer\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756072691.json",
+      "answer": 2417792,
+      "python_code": "# Count permutations of 1..12 where every adjacent sum is non-prime.\n# Build set of primes up to 24\nprimes = {2,3,5,7,11,13,17,19,23}\nallowed_sums = {s for s in range(2, 25) if s not in primes and s != 1}\n\nn = 12\n# adjacency matrix for numbers 1..12 (indices 0..11)\nadj = [[False]*n for _ in range(n)]\nfor i in range(1, n+1):\n    for j in range(1, n+1):\n        if i != j and (i + j) in allowed_sums:\n            adj[i-1][j-1] = True\n\nFULL = (1 << n) - 1\n# dp[mask][last] = number of ways\ndp = [ [0]*n for _ in range(1<<n) ]\nfor i in range(n):\n    dp[1<<i][i] = 1\n\nfor mask in range(1<<n):\n    for last in range(n):\n        ways = dp[mask][last]\n        if ways == 0:\n            continue\n        for nxt in range(n):\n            if (mask >> nxt) & 1 == 0 and adj[last][nxt]:\n                dp[mask | (1<<nxt)][nxt] += ways\n\nresult = sum(dp[FULL][i] for i in range(n))\nprint(result)  # final integer answer\nresult\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756072759.json",
+      "answer": 2417792,
+      "python_code": "from math import sqrt\n\n# Precompute primes up to 24\nmax_sum = 24\nis_prime = [False, False] + [True] * (max_sum - 1)\nfor p in range(2, int(sqrt(max_sum)) + 1):\n    if is_prime[p]:\n        for q in range(p*p, max_sum+1, p):\n            is_prime[q] = False\nprimes = {i for i, v in enumerate(is_prime) if v}\n\nn = 12\n# vertices 0..11 correspond to numbers 1..12\nadj = [[False]*n for _ in range(n)]\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            continue\n        s = (i+1) + (j+1)\n        # edge allowed if sum is non-prime\n        if s not in primes:\n            adj[i][j] = True\n\n# DP over subsets: dp[mask][last]\nNmask = 1 << n\ndp = [ [0]*n for _ in range(Nmask) ]\nfor i in range(n):\n    dp[1<<i][i] = 1\n\nfor mask in range(Nmask):\n    for last in range(n):\n        ways = dp[mask][last]\n        if ways == 0:\n            continue\n        for nxt in range(n):\n            if mask & (1<<nxt):\n                continue\n            if adj[last][nxt]:\n                dp[mask | (1<<nxt)][nxt] += ways\n\nfull_mask = (1<<n) - 1\nanswer = sum(dp[full_mask][last] for last in range(n))\nprint(answer)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.44,
+    "total_completion_tokens": 21810,
+    "total_cost": 0.0526035,
+    "total_elapsed_time": 293.738876,
+    "tokens_per_second": 74.24962026476877
+  }
+}

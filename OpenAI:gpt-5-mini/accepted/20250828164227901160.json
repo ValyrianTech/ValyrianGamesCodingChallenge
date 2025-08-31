@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250828164227901160",
+  "timestamp": "2025-08-28T18:53:19.732720",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the single integer 'password' equal to the sum of all distinct products whose multiplicand, multiplier, and product concatenated in decimal (without spaces or leading zeros) form a 1 through 9 pandigital number. That is, for each pair of positive integers (a, b), form the string concatenation of a, b, and a*b; if that concatenation uses each digit 1..9 exactly once, include the product a*b in a set. The final answer is the sum of all distinct products in that set. Return only the integer sum as the final answer. You may use Python to compute the answer. (Example: 39 * 186 = 7254; concatenation \"391867254\" is 1..9 pandigital, so 7254 would be included.)",
+    "example_code": "# Compute sum of all products whose multiplicand/multiplier/product concatenation is 1..9 pandigital\nproducts = set()\n\n# Case 1: 1-digit * 4-digit\nfor a in range(1, 10):\n    for b in range(1000, 10000):\n        p = a * b\n        s = f'{a}{b}{p}'\n        if len(s) != 9:\n            continue\n        if set(s) == set('123456789'):\n            products.add(p)\n\n# Case 2: 2-digit * 3-digit\nfor a in range(10, 100):\n    for b in range(100, 1000):\n        p = a * b\n        s = f'{a}{b}{p}'\n        if len(s) != 9:\n            continue\n        if set(s) == set('123456789'):\n            products.add(p)\n\nprint(sum(products))\n",
+    "expected_answer": 45228
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756399666.json",
+      "answer": 45228,
+      "python_code": "products = set()\n\ndef is_pandigital(a, b):\n    s = str(a) + str(b) + str(a * b)\n    return len(s) == 9 and '0' not in s and set(s) == set('123456789')\n\n# Case 1: 1-digit * 4-digit = 4-digit (1 + 4 + 4 = 9)\nfor a in range(1, 10):\n    for b in range(1000, 10000):\n        if is_pandigital(a, b):\n            products.add(a * b)\n\n# Case 2: 2-digit * 3-digit = 4-digit (2 + 3 + 4 = 9)\nfor a in range(10, 100):\n    for b in range(100, 1000):\n        if is_pandigital(a, b):\n            products.add(a * b)\n\nresult = sum(products)\nprint(result)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756399768.json",
+      "answer": 45228,
+      "python_code": "def compute():\n    products = set()\n    digits = set('123456789')\n    for len_a in range(1, 5):\n        for len_b in range(1, 5):\n            len_p = 9 - len_a - len_b\n            if len_p < 1:\n                continue\n            a_start = 1 if len_a == 1 else 10 ** (len_a - 1)\n            a_end = 10 ** len_a\n            b_start = 1 if len_b == 1 else 10 ** (len_b - 1)\n            b_end = 10 ** len_b\n            for a in range(a_start, a_end):\n                for b in range(b_start, b_end):\n                    p = a * b\n                    if len(str(p)) != len_p:\n                        continue\n                    s = f\"{a}{b}{p}\"\n                    if len(s) == 9 and set(s) == digits:\n                        products.add(p)\n    return sum(products), products\n\nans, prods = compute()\nprint(ans)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756399834.json",
+      "answer": 45228,
+      "python_code": "# Compute sum of distinct pandigital products\\ndef is_pandigital_1to9(s):\\n    return ''.join(sorted(s)) == '123456789'\\n\\nproducts = set()\\nfor a in range(1, 100):\\n    for b in range(a, 10000):\\n        p = a * b\\n        s = f'{a}{b}{p}'\\n        if len(s) != 9:\\n            continue\\n        if is_pandigital_1to9(s):\\n            products.add(p)\\n\\nprint(sum(products))\\nprint(sorted(products))\\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756399907.json",
+      "answer": 45228,
+      "python_code": "products = set()\nfor a in range(1, 100):\n    for b in range(1, 10000):\n        s = f\"{a}{b}{a*b}\"\n        if len(s) != 9:\n            continue\n        if set(s) == set(\"123456789\"):\n            products.add(a*b)\n\nsum_products = sum(products)\nprint(sum_products)\nsum_products\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756399998.json",
+      "answer": 45228,
+      "python_code": "digits = set('123456789')\nproducts = set()\nfor a in range(1, 10000):\n    for b in range(1, 10000):\n        s = str(a) + str(b) + str(a * b)\n        if len(s) > 9:\n            break\n        if len(s) == 9 and set(s) == digits:\n            products.add(a * b)\nans = sum(products)\nprint(ans)\nans",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.34,
+    "total_completion_tokens": 28070,
+    "total_cost": 0.0651325,
+    "total_elapsed_time": 456.14634400000006,
+    "tokens_per_second": 61.53726839910833
+  }
+}

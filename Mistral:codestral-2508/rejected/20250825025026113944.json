@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250825025026113944",
+  "timestamp": "2025-08-25T04:55:00.567343",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer n such that the sum of the digits of n multiplied by the number of digits in n equals 1000. The solution must be found without brute force and must complete within 5 seconds on standard hardware.",
+    "example_code": "# /// script\n# dependencies = ['sympy']\n# ///\nfrom sympy import divisors\n\ndef find_special_number():\n    # We know the number must be between 100 and 1000 since 1000/9 = 111.11\n    # and the maximum sum of digits for a 3-digit number is 27 (999)\n    for d in range(3, 7):  # Possible number of digits\n        for s in range(1, 10*d + 1):  # Possible digit sums\n            if s * d == 1000:\n                # Find numbers with d digits that sum to s\n                # Using sympy's divisors to find possible digit combinations\n                for num in range(10**(d-1), 10**d):\n                    if sum(int(c) for c in str(num)) == s:\n                        return num\n    return None\n\nfind_special_number()",
+    "expected_answer": 144
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756090309.json",
+      "answer": 11111111111111117999,
+      "python_code": "# /// script\n# dependencies = []\n# ///\ndef find_smallest_n():\n    for d in range(1, 1000):  # Maximum digits is 1000 since sum of digits is 1000 and each digit is at least 1\n        if 1000 % d != 0:\n            continue\n        s = 1000 // d\n        if s > 9 * d:  # Maximum possible sum for d digits is 9*d\n            continue\n        # Find the smallest number with d digits and sum s\n        digits = [1] * d\n        remaining = s - d\n        if remaining < 0:\n            continue\n        # Distribute remaining sum to the most significant digits\n        for i in range(d - 1, -1, -1):\n            if remaining <= 0:\n                break\n            add = min(9 - digits[i], remaining)\n            digits[i] += add\n            remaining -= add\n        if remaining != 0:\n            continue\n        n = int(''.join(map(str, digits)))\n        return n\n    return None\n\nresult = find_smallest_n()\nresult",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756090359.json",
+      "answer": 99999500000000000000,
+      "python_code": "def find_smallest_n():\n    min_n = None\n    # Iterate over possible number of digits (divisors of 1000)\n    for d in range(1, 1001):\n        if 1000 % d != 0:\n            continue\n        s = 1000 // d\n        # Find the smallest d-digit number with digit sum s\n        if s > 9 * d:\n            continue  # Not possible to have such a number\n        # Construct the smallest number with digit sum s\n        digits = [0] * d\n        remaining = s\n        # Fill the most significant digits first\n        for i in range(d):\n            if remaining >= 9:\n                digits[i] = 9\n                remaining -= 9\n            else:\n                digits[i] = remaining\n                remaining = 0\n                break\n        # The smallest number is the digits in order\n        n = int(''.join(map(str, digits)))\n        if min_n is None or n < min_n:\n            min_n = n\n    return min_n\n\nanswer = find_smallest_n()\n",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756090405.json",
+      "answer": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+      "python_code": "def find_smallest_n():\n    divisors = [125, 200, 250, 500, 1000]\n    candidates = []\n\n    for d in divisors:\n        s = 1000 // d\n        if s > 9 * d:\n            continue  # Not possible, but already filtered\n\n        # Construct the smallest d-digit number with digit sum s\n        digits = [0] * d\n        remaining_sum = s\n\n        # Fill the least significant digits with 9's\n        for i in range(d - 1, -1, -1):\n            if remaining_sum >= 9:\n                digits[i] = 9\n                remaining_sum -= 9\n            else:\n                digits[i] = remaining_sum\n                remaining_sum = 0\n                break\n\n        # The most significant digit must be at least 1 (since it's a d-digit number)\n        if digits[0] == 0:\n            digits[0] = 1\n            remaining_sum -= 1\n\n        # Adjust the remaining sum by increasing the most significant digit\n        if remaining_sum > 0:\n            digits[0] += remaining_sum\n\n        # Construct the number\n        n = int(''.join(map(str, digits)))\n        candidates.append(n)\n\n    return min(candidates)\n\nanswer = find_smallest_n()",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756090456.json",
+      "answer": 1,
+      "python_code": "def find_smallest_number():\n    # Find all divisors of 1000\n    divisors = [d for d in range(1, 1001) if 1000 % d == 0]\n\n    # Filter divisors where 1000/d <= 9*d\n    valid_divisors = [d for d in divisors if (1000 // d) <= 9 * d]\n\n    # Initialize the smallest number to a large value\n    smallest_n = float('inf')\n\n    for d in valid_divisors:\n        s = 1000 // d\n        # Construct the smallest d-digit number with digit sum s\n        # Start with the smallest possible digits\n        digits = [0] * d\n        remaining_sum = s\n        for i in range(d - 1, -1, -1):\n            if remaining_sum >= 9:\n                digits[i] = 9\n                remaining_sum -= 9\n            else:\n                digits[i] = remaining_sum\n                remaining_sum = 0\n        # The smallest number is 10^(d-1) + the constructed number\n        # But we need to ensure it's a d-digit number\n        # So the smallest is 1 followed by (d-1) zeros, but sum is 1\n        # So we need to adjust\n        # The minimal number is 10^(d-1) + (s - 1) * 10^(d-1) / 9, but this is complex\n        # Instead, we can construct the number directly\n        n = int(''.join(map(str, digits)))\n        if n < smallest_n:\n            smallest_n = n\n\n    return smallest_n\n\n# Calculate the answer\nanswer = find_smallest_number()",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756090497.json",
+      "answer": 1000000000,
+      "python_code": "def find_smallest_n():\n    for d in range(1, 10):  # Maximum digits is 10 since 9*10=90 < 1000, but 9*11=99 < 1000, etc.\n        if 1000 % d != 0:\n            continue\n        s = 1000 // d\n        if s > 9 * d:\n            continue  # Not possible to have a digit sum of s with d digits\n\n        # Find the smallest number with d digits and digit sum s\n        # Start with the smallest d-digit number (10^(d-1)) and increment\n        n = 10 ** (d - 1)\n        while True:\n            current_sum = sum(int(c) for c in str(n))\n            if current_sum == s:\n                return n\n            n += 1\n            if n >= 10 ** d:\n                break  # No solution for this d\n    return None\n\nanswer = find_smallest_n()\n",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:codestral-2508",
+    "temperature": 0.06,
+    "total_completion_tokens": 22342,
+    "total_cost": 0.05105190000000002,
+    "total_elapsed_time": 100.65093700000003,
+    "tokens_per_second": 221.97508206009044
+  }
+}

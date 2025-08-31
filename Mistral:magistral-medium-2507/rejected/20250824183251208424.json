@@ -1,0 +1,51 @@
+{
+  "conversation_id": "20250824183251208424",
+  "timestamp": "2025-08-24T20:48:42.049715",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 3,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Consider all 4-digit numbers where each digit is distinct and belongs to the set {1, 3, 5, 7, 9}. For example, 1357 is one such number. Find the sum of all such numbers that are also prime.",
+    "example_code": "from itertools import permutations\\nimport math\\n\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    for i in range(2, int(math.sqrt(n)) + 1):\\n        if n % i == 0:\\n            return False\\n    return True\\n\\ndigits = [1, 3, 5, 7, 9]\\nsum_primes = 0\\n\\n# Generate all combinations of 4 digits from the 5 available\\nfrom itertools import combinations\\n\\nfor combo in combinations(digits, 4):\\n    # Generate all permutations of these 4 digits\\n    for perm in permutations(combo):\\n        # Form the number\\n        num = int(''.join(map(str, perm)))\\n        if is_prime(num):\\n            sum_primes += num\\n\\nprint(sum_primes)",
+    "expected_answer": 118020
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756060837.json",
+      "answer": 59106,
+      "python_code": "from itertools import permutations\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    max_divisor = int(n**0.5) + 1\n    for i in range(3, max_divisor, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndigits = [1, 3, 5, 7, 9]\nprime_sum = 0\n\n# Generate all permutations of length 4 from the digits\nfor perm in permutations(digits, 4):\n    num = int(''.join(map(str, perm)))\n    if is_prime(num):\n        prime_sum += num\n\nprint(prime_sum)",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756060980.json",
+      "answer": 113635,
+      "python_code": "from itertools import permutations\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndigits = [1, 3, 5, 7, 9]\nsum_primes = 0\n\nfor perm in permutations(digits, 4):\n    num = int(''.join(map(str, perm)))\n    if is_prime(num):\n        sum_primes += num\n\nsum_primes",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756061113.json",
+      "answer": 112704,
+      "python_code": "# /// script\n# dependencies = []\n# ///\nfrom itertools import permutations\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndigits_sets = [\n    {'1', '5', '7', '9'},\n    {'1', '3', '7', '9'},\n    {'1', '3', '5', '7'}\n]\n\nsum_primes = 0\n\ndef digits_to_number(digits):\n    return int(''.join(map(str, digits)))\n\nfor digit_set in digits_sets:\n    digit_list = list(digit_set)\n    for perm in permutations(digit_list):\n        num = digits_to_number(perm)\n        if num % 5 == 0 and perm[-1] == '5':  # but since we're excluding numbers ending with 5, but actually, any number ending with 5 is divisible by 5\n            continue\n        if is_prime(num):\n            sum_primes += num\n\nsum_primes",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:magistral-medium-2507",
+    "temperature": 0.55,
+    "total_completion_tokens": 26516,
+    "total_cost": 0.234856,
+    "total_elapsed_time": 346.902553,
+    "tokens_per_second": 76.43645101683641
+  }
+}

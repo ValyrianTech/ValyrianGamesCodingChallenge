@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250826184101198975",
+  "timestamp": "2025-08-26T20:45:37.117476",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer n such that the sum of the digits of n and the sum of the digits of n squared (n^2) are both equal to the same prime number. Write a Python program to solve this and return the value of n.",
+    "example_code": "# Define helper functions\ndef digit_sum(n):\n    return sum(int(d) for d in str(n))\n\ndef is_prime(k):\n    if k < 2:\n        return False\n    if k == 2:\n        return True\n    if k % 2 == 0:\n        return False\n    for i in range(3, int(k**0.5) + 1, 2):\n        if k % i == 0:\n            return False\n    return True\n\n# Search for the smallest n\nn = 1\nwhile n < 100000:\n    ds_n = digit_sum(n)\n    ds_n2 = digit_sum(n * n)\n    if ds_n == ds_n2 and is_prime(ds_n):\n        print(n)\n        break\n    n += 1",
+    "expected_answer": 199
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756233732.json",
+      "answer": 199,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef find_smallest_n():\n    n = 1\n    while True:\n        digit_sum_n = sum_of_digits(n)\n        digit_sum_n2 = sum_of_digits(n * n)\n        \n        if digit_sum_n == digit_sum_n2 and is_prime(digit_sum_n):\n            return n, digit_sum_n\n        \n        n += 1\n\n# Find the answer\nresult_n, prime_sum = find_smallest_n()\nprint(f'n = {result_n}, digit sum = {prime_sum}')\nresult_n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756233778.json",
+      "answer": 199,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\ndef is_prime(num):\n    if num < 2:\n        return False\n    if num == 2:\n        return True\n    if num % 2 == 0:\n        return False\n    for i in range(3, int(num**0.5)+1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef find_smallest_n():\n    n = 1\n    while True:\n        digit_sum_n = sum_of_digits(n)\n        digit_sum_n2 = sum_of_digits(n * n)\n        if digit_sum_n == digit_sum_n2 and is_prime(digit_sum_n):\n            return n, digit_sum_n\n        n += 1\n\nresult = find_smallest_n()\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756233832.json",
+      "answer": 199,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\ndef is_prime(num):\n    if num < 2:\n        return False\n    if num == 2:\n        return True\n    if num % 2 == 0:\n        return False\n    for i in range(3, int(num**0.5)+1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef find_smallest_n():\n    n = 1\n    while True:\n        sum_n = sum_of_digits(n)\n        sum_n_squared = sum_of_digits(n * n)\n        if sum_n == sum_n_squared and is_prime(sum_n):\n            return n\n        n += 1\n\nresult = find_smallest_n()\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756233884.json",
+      "answer": 199,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef solve():\n    n = 1\n    while True:\n        digit_sum_n = sum_of_digits(n)\n        if is_prime(digit_sum_n):\n            digit_sum_n_squared = sum_of_digits(n * n)\n            if digit_sum_n == digit_sum_n_squared:\n                return n\n        n += 1\n\nresult = solve()\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756233936.json",
+      "answer": 199,
+      "python_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef solve():\n    n = 1\n    while True:\n        digit_sum_n = sum_of_digits(n)\n        digit_sum_n2 = sum_of_digits(n * n)\n        \n        if digit_sum_n == digit_sum_n2 and is_prime(digit_sum_n):\n            return n, digit_sum_n\n        \n        n += 1\n\n# Run the solution\nresult = solve()\nresult",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+    "temperature": 0.15,
+    "total_completion_tokens": 4399,
+    "total_cost": 0.010773,
+    "total_elapsed_time": 110.19403399999997,
+    "tokens_per_second": 39.9204915213468
+  }
+}

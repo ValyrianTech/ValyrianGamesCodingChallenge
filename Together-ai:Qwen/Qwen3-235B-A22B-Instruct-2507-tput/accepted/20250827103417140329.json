@@ -1,0 +1,57 @@
+{
+  "conversation_id": "20250827103417140329",
+  "timestamp": "2025-08-27T12:46:47.990512",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 4,
+    "correct_answers": 4,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer n such that the decimal representation of n cubed (n^3) ends with the digits '888'. For example, if n^3 = ...888, then n satisfies the condition. Your answer must be a single integer.",
+    "example_code": "# We are solving: n^3 \u2261 888 (mod 1000)\n\nn = 1\nwhile True:\n    if (n ** 3) % 1000 == 888:\n        break\n    n += 1\n\nprint(n)  # Output: 192",
+    "expected_answer": 192
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756291153.json",
+      "answer": 192,
+      "python_code": "n = 1\nwhile True:\n    if (n ** 3) % 1000 == 888:\n        break\n    n += 1\nn",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756291518.json",
+      "answer": 192,
+      "python_code": "def find_smallest_n():\n    n = 1\n    while True:\n        if (n ** 3) % 1000 == 888:\n            return n\n        n += 1\n\nresult = find_smallest_n()\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756291561.json",
+      "answer": 192,
+      "python_code": "def find_smallest_n():\n    n = 1\n    while True:\n        if (n ** 3) % 1000 == 888:\n            return n\n        n += 1\n\nresult = find_smallest_n()\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756291604.json",
+      "answer": 192,
+      "python_code": "def find_n():\n    n = 1\n    while True:\n        if (n ** 3) % 1000 == 888:\n            return n\n        n += 1\n\nresult = find_n()\nresult",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+    "temperature": 0.42,
+    "total_completion_tokens": 1867,
+    "total_cost": 0.007319600000000002,
+    "total_elapsed_time": 182.22427499999998,
+    "tokens_per_second": 10.24561628795066
+  }
+}

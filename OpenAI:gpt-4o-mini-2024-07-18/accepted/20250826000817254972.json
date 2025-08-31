@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250826000817254972",
+  "timestamp": "2025-08-26T02:12:48.304433",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a list of integers. Your task is to find the sum of all unique integers in the list. A unique integer is defined as an integer that appears exactly once in the list. If there are no unique integers, return 0.\n\nExample:\nInput: [4, 5, 6, 4, 5, 7, 8]\nOutput: 15 (since 6, 7, and 8 are unique)\n\nConstraints:\n- The list can contain up to 1000 integers.\n- Each integer can range from -1000 to 1000.",
+    "example_code": "def sum_of_unique_integers(nums):\n    from collections import Counter\n    count = Counter(nums)\n    return sum(num for num, freq in count.items() if freq == 1)\n\n# Example usage\nprint(sum_of_unique_integers([4, 5, 6, 4, 5, 7, 8]))  # Output: 15",
+    "expected_answer": 15
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756167003.json",
+      "answer": 15,
+      "python_code": "def sum_of_unique_integers(nums):\n    from collections import Counter\n    \n    # Count occurrences of each integer\n    counts = Counter(nums)\n    \n    # Sum integers that appear exactly once\n    unique_sum = sum(num for num, count in counts.items() if count == 1)\n    \n    return unique_sum\n\n# Example input\ninput_list = [4, 5, 6, 4, 5, 7, 8]\nresult = sum_of_unique_integers(input_list)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756167044.json",
+      "answer": 15,
+      "python_code": "from collections import Counter\n\ndef sum_of_unique_integers(nums):\n    count = Counter(nums)\n    unique_sum = sum(num for num, cnt in count.items() if cnt == 1)\n    return unique_sum\n\n# Example input\ninput_list = [4, 5, 6, 4, 5, 7, 8]\nresult = sum_of_unique_integers(input_list)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756167086.json",
+      "answer": 15,
+      "python_code": "def sum_of_unique_integers(nums):\n    from collections import Counter\n    \n    # Count occurrences of each integer\n    counts = Counter(nums)\n    \n    # Sum the unique integers\n    unique_sum = sum(num for num, count in counts.items() if count == 1)\n    \n    return unique_sum\n\n# Example input\ninput_list = [4, 5, 6, 4, 5, 7, 8]\nresult = sum_of_unique_integers(input_list)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756167127.json",
+      "answer": 15,
+      "python_code": "def sum_of_unique_integers(nums):\n    # Count occurrences of each integer\n    count = {}\n    for num in nums:\n        count[num] = count.get(num, 0) + 1\n    \n    # Sum unique integers\n    unique_sum = sum(num for num, cnt in count.items() if cnt == 1)\n    \n    return unique_sum\n\n# Example input\ninput_list = [4, 5, 6, 4, 5, 7, 8]\nresult = sum_of_unique_integers(input_list)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756167167.json",
+      "answer": 15,
+      "python_code": "def sum_of_unique_integers(nums):\n    count = {}\n    \n    # Count occurrences of each integer\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n    \n    # Sum the unique integers\n    unique_sum = sum(num for num, cnt in count.items() if cnt == 1)\n    \n    return unique_sum\n\n# Example input\ninput_list = [4, 5, 6, 4, 5, 7, 8]\nresult = sum_of_unique_integers(input_list)\nresult",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4o-mini-2024-07-18",
+    "temperature": 0.37,
+    "total_completion_tokens": 4104,
+    "total_cost": 0.007784099999999999,
+    "total_elapsed_time": 88.09417499999999,
+    "tokens_per_second": 46.58650813178057
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250825154729220162",
+  "timestamp": "2025-08-25T17:51:09.312194",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "You are given a string that represents a sequence of numbers separated by spaces. Your task is to find the sum of the digits of the numbers in the string that are divisible by 3.\n\nFor example, if the input string is \"12 34 56 78 90\", the numbers divisible by 3 are 12, 56, and 90. The sum of the digits of these numbers is 1 + 2 + 5 + 6 + 9 + 0 = 23.\n\nWrite a Python function `sum_of_divisible_digits` that takes a string as input and returns the sum of the digits of the numbers in the string that are divisible by 3.\n\nExample:\nInput: \"12 34 56 78 90\"\nOutput: 23\n\nInput: \"10 20 30 40 50\"\nOutput: 3\n\nInput: \"1 2 3 4 5\"\nOutput: 3\n\nInput: \"123 456 789 101112\"\nOutput: 28",
+    "example_code": "def sum_of_divisible_digits(s):\n    # Split the string into a list of numbers\n    numbers = s.split()\n\n    # Initialize the sum of digits\n    total_sum = 0\n\n    # Iterate through each number\n    for num in numbers:\n        # Convert the number to an integer\n        num_int = int(num)\n        # Check if the number is divisible by 3\n        if num_int % 3 == 0:\n            # Sum the digits of the number\n            total_sum += sum(int(digit) for digit in str(num_int))\n\n    return total_sum\n\n# Example usage\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))  # Output: 23\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))  # Output: 3\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))      # Output: 3\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))  # Output: 28",
+    "expected_answer": 28
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756136913.json",
+      "answer": 51,
+      "python_code": "# /// script\n# dependencies = []\n# ///\ndef sum_of_divisible_digits(input_string):\n    # Split the input string into a list of numbers\n    numbers = input_string.split()\n    \n    # Initialize the sum of digits\n    total_sum = 0\n    \n    # Iterate through each number\n    for number in numbers:\n        # Check if the number is divisible by 3\n        if int(number) % 3 == 0:\n            # Sum the digits of the number\n            total_sum += sum(int(digit) for digit in number)\n    \n    return total_sum\n\n# Test the function with the given examples\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))  # Output: 23\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))  # Output: 3\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))        # Output: 3\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))  # Output: 28",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756136952.json",
+      "answer": 51,
+      "python_code": "def sum_of_divisible_digits(input_string):\n    # Split the input string into individual numbers\n    numbers = input_string.split()\n    \n    # Initialize the sum of digits\n    total_sum = 0\n    \n    # Iterate through each number\n    for number in numbers:\n        # Convert the number to an integer\n        num = int(number)\n        \n        # Check if the number is divisible by 3\n        if num % 3 == 0:\n            # Sum the digits of the number\n            total_sum += sum(int(digit) for digit in str(num))\n    \n    return total_sum\n\n# Test the function with the given examples\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))  # Output: 23\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))  # Output: 3\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))       # Output: 3\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))  # Output: 28",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756136991.json",
+      "answer": 51,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\n# ///\n\nimport re\n\ndef sum_of_divisible_digits(input_string):\n    # Split the input string into individual numbers\n    numbers = input_string.split()\n    # Filter numbers that are divisible by 3\n    divisible_by_3 = [int(num) for num in numbers if int(num) % 3 == 0]\n    # Sum the digits of the numbers that are divisible by 3\n    digit_sum = sum(int(digit) for num in divisible_by_3 for digit in str(num))\n    return digit_sum\n\n# Test cases\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))  # Output: 23\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))  # Output: 3\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))  # Output: 3\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))  # Output: 28\n",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756137027.json",
+      "answer": 51,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\n# ///\n\ndef sum_of_divisible_digits(input_string: str) -> int:\n    numbers = input_string.split()\n    divisible_numbers = [num for num in numbers if int(num) % 3 == 0]\n    digit_sum = sum(int(digit) for num in divisible_numbers for digit in num)\n    return digit_sum\n\n# Example usage\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756137064.json",
+      "answer": 51,
+      "python_code": "# /// script\n# dependencies = []\n# ///\ndef sum_of_divisible_digits(input_string):\n    numbers = input_string.split()\n    sum_digits = 0\n    for number in numbers:\n        if int(number) % 3 == 0:\n            sum_digits += sum(int(digit) for digit in number)\n    return sum_digits\n\n# Test the function with the given examples\nprint(sum_of_divisible_digits(\"12 34 56 78 90\"))\nprint(sum_of_divisible_digits(\"10 20 30 40 50\"))\nprint(sum_of_divisible_digits(\"1 2 3 4 5\"))\nprint(sum_of_divisible_digits(\"123 456 789 101112\"))",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:mistral-small-2501",
+    "temperature": 0.62,
+    "total_completion_tokens": 7031,
+    "total_cost": 0.0072719,
+    "total_elapsed_time": 60.30651199999999,
+    "tokens_per_second": 116.58774097231823
+  }
+}

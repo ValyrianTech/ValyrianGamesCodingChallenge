@@ -1,0 +1,29 @@
+{
+  "conversation_id": "20250828214025561437",
+  "timestamp": "2025-08-28T23:45:25.843231",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 0,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false,
+    "failure_reason": "Challenge file did not appear in time",
+    "failure_type": "TIMEOUT"
+  },
+  "status": "REJECTED",
+  "solution_attempts": [],
+  "performance_metrics": {
+    "model_name": "Groq:openai/gpt-oss-120b",
+    "temperature": 0.54,
+    "total_completion_tokens": 7756,
+    "total_cost": 0.00557385,
+    "total_elapsed_time": 39.945323,
+    "tokens_per_second": 194.16540955245247
+  }
+}

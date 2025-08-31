@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827222010836496",
+  "timestamp": "2025-08-28T00:28:26.136592",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Consider all permutations of the digits 1 through 9 (each digit used exactly once). A permutation is valid if for every pair of adjacent digits in the permutation, the absolute difference between those two digits is a prime number. Use the set of prime differences {2, 3, 5, 7}. Compute and return the number of valid permutations as a single integer (this is the password). You may use Python to compute the result; the final output must be exactly one integer.",
+    "example_code": "from functools import lru_cache\n\n# Count permutations of 1..9 where adjacent absolute differences are prime\nn = 9\nprimes = {2,3,5,7}\n# build adjacency: index 0..8 represent digits 1..9\nadj = [[False]*n for _ in range(n)]\nfor i in range(n):\n    for j in range(n):\n        if i != j and abs((i+1) - (j+1)) in primes:\n            adj[i][j] = True\n\n# DP over subsets: dp[mask][last] = number of ways to build permutation with used mask ending at 'last'\nNmask = 1 << n\ndp = [[0]*n for _ in range(Nmask)]\nfor i in range(n):\n    dp[1<<i][i] = 1\n\nfor mask in range(Nmask):\n    for last in range(n):\n        if not (mask & (1<<last)):\n            continue\n        v = dp[mask][last]\n        if v == 0:\n            continue\n        for nxt in range(n):\n            if mask & (1<<nxt):\n                continue\n            if adj[last][nxt]:\n                dp[mask | (1<<nxt)][nxt] += v\n\nfull_mask = Nmask - 1\nprint(sum(dp[full_mask][last] for last in range(n)))\n",
+    "expected_answer": 1968
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756333378.json",
+      "answer": 1968,
+      "python_code": "from itertools import permutations\nprimes = {2,3,5,7}\ncount = 0\nfor perm in permutations(range(1,10)):\n    ok = True\n    for a,b in zip(perm, perm[1:]):\n        if abs(a-b) not in primes:\n            ok = False\n            break\n    if ok:\n        count += 1\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333471.json",
+      "answer": 1968,
+      "python_code": "from itertools import permutations\nprimes = {2, 3, 5, 7}\ncount = 0\nfor p in permutations(range(1, 10)):\n    if all(abs(p[i] - p[i+1]) in primes for i in range(8)):\n        count += 1\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333554.json",
+      "answer": 1968,
+      "python_code": "# Compute the number of permutations of digits 1..9 where each adjacent absolute difference is in {2,3,5,7}\nprimes = {2,3,5,7}\nnodes = list(range(1,10))\nadj = {i: [j for j in nodes if i!=j and abs(i-j) in primes] for i in nodes}\ncount = 0\n\ndef dfs(u, used_mask, length):\n    global count\n    if length == 9:\n        count += 1\n        return\n    for v in adj[u]:\n        bit = 1 << (v-1)\n        if not (used_mask & bit):\n            dfs(v, used_mask | bit, length+1)\n\nfor start in nodes:\n    dfs(start, 1 << (start-1), 1)\n\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333625.json",
+      "answer": 1968,
+      "python_code": "from itertools import permutations\nprimes = {2, 3, 5, 7}\n\ndef valid(perm):\n    return all(abs(perm[i] - perm[i+1]) in primes for i in range(len(perm)-1))\n\ncount = 0\nfor p in permutations(range(1, 10)):\n    if valid(p):\n        count += 1\n\nprint(count)\ncount",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756333705.json",
+      "answer": 1968,
+      "python_code": "import itertools\nprimes={2,3,5,7}\ncount=0\nfor p in itertools.permutations(range(1,10)):\n    ok=True\n    for i in range(8):\n        if abs(p[i]-p[i+1]) not in primes:\n            ok=False\n            break\n    if ok:\n        count+=1\nprint(count)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.93,
+    "total_completion_tokens": 17310,
+    "total_cost": 0.04322600000000001,
+    "total_elapsed_time": 311.091449,
+    "tokens_per_second": 55.64280231951987
+  }
+}

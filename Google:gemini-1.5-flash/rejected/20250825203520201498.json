@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250825203520201498",
+  "timestamp": "2025-08-25T22:38:30.574615",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "A sequence of numbers is generated using the following recursive rule:\n\n`a(n) = a(n-1) + a(n-2) + n`\n\nwhere `a(1) = 1` and `a(2) = 2`.  Find the value of `a(10)`.",
+    "example_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(2, 10):\n    a.append(a[i-1] + a[i-2] + i + 1)\nprint(a[9])",
+    "expected_answer": 177
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756154165.json",
+      "answer": 330,
+      "python_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(3, 11):\n    a.append(a[i - 2] + a[i - 3] + i)\nprint(a[9])",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756154198.json",
+      "answer": 330,
+      "python_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(3, 11):\n    a.append(a[i-2] + a[i-3] + i)\nprint(a[9])",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756154235.json",
+      "answer": 330,
+      "python_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(3, 11):\n    a.append(a[i-2] + a[i-3] + i)\nprint(a[9])",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756154273.json",
+      "answer": 330,
+      "python_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(3, 11):\n    a.append(a[i-2] + a[i-3] + i)\nprint(a[9])",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756154308.json",
+      "answer": 330,
+      "python_code": "# /// script\n# dependencies = []\n# ///\na = [1, 2]\nfor i in range(3, 11):\n    a.append(a[i-2] + a[i-3] + i)\nprint(a[9])",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Google:gemini-1.5-flash",
+    "temperature": 0.36,
+    "total_completion_tokens": 1201,
+    "total_cost": 0.003071625,
+    "total_elapsed_time": 33.133179999999996,
+    "tokens_per_second": 36.24765265513302
+  }
+}

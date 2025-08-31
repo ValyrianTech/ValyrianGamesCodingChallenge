@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250826093419679523",
+  "timestamp": "2025-08-26T11:37:14.442124",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a list of integers. Your task is to find the longest contiguous subarray that sums to zero. The function should return the length of this subarray.\n\nFor example:\n- For the input [1, 2, -2, 4, -4], the longest subarray that sums to zero is [2, -2, 4, -4], so the function should return 4.\n- For the input [1, 2, 3, 4, 5], there is no subarray that sums to zero, so the function should return 0.\n\nWrite a Python function `longest_zero_sum_subarray(arr)` that takes a list of integers and returns the length of the longest contiguous subarray that sums to zero.",
+    "example_code": "def longest_zero_sum_subarray(arr):\n    # Dictionary to store the first occurrence of each sum\n    sum_index_map = {}\n    max_length = 0\n    current_sum = 0\n\n    for i, num in enumerate(arr):\n        current_sum += num\n\n        if current_sum == 0:\n            max_length = i + 1\n\n        if current_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[current_sum])\n        else:\n            sum_index_map[current_sum] = i\n\n    return max_length\n\n# Test the function with the example input\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Expected output: 4\nprint(longest_zero_sum_subarray([1, 2, 3, 4, 5]))  # Expected output: 0",
+    "expected_answer": 4
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756200904.json",
+      "answer": 4,
+      "python_code": "def longest_zero_sum_subarray(arr):\n    # Dictionary to store the first occurrence of each sum\n    sum_index_map = {}\n    max_length = 0\n    current_sum = 0\n\n    for i, num in enumerate(arr):\n        current_sum += num\n\n        # If current_sum is zero, we found a subarray from index 0 to i\n        if current_sum == 0:\n            max_length = i + 1\n\n        # If current_sum has been seen before, it means the subarray between the previous index and current index sums to zero\n        if current_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[current_sum])\n        else:\n            # Store the first occurrence of the current_sum\n            sum_index_map[current_sum] = i\n\n    return max_length\n\n# Example usage\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Output: 4\nprint(longest_zero_sum_subarray([1, 2, 3, 4, 5]))    # Output: 0",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756200939.json",
+      "answer": 4,
+      "python_code": "def longest_zero_sum_subarray(arr):\n    # Create a dictionary to store the cumulative sum and its index\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n\n    for i, num in enumerate(arr):\n        cumulative_sum += num\n\n        # If cumulative sum is zero, we have found a subarray from index 0 to i\n        if cumulative_sum == 0:\n            max_length = i + 1\n\n        # If this cumulative sum has been seen before, it means the subarray between the previous index and current index sums to zero\n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            # Store the index of this cumulative sum\n            sum_index_map[cumulative_sum] = i\n\n    return max_length\n\n# Test cases\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Output: 4\nprint(longest_zero_sum_subarray([1, 2, 3, 4, 5]))    # Output: 0",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756200970.json",
+      "answer": 4,
+      "python_code": "def longest_zero_sum_subarray(arr):\n    # Dictionary to store the first occurrence of each sum\n    sum_index_map = {}\n    current_sum = 0\n    max_length = 0\n    \n    for i, num in enumerate(arr):\n        current_sum += num\n        \n        # If current_sum is zero, we found a subarray from index 0 to i\n        if current_sum == 0:\n            max_length = i + 1\n        \n        # If current_sum has been seen before, it means the subarray between the previous index and i sums to zero\n        if current_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[current_sum])\n        else:\n            # Store the first occurrence of the current_sum\n            sum_index_map[current_sum] = i\n    \n    return max_length\n\n# Test cases\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Output: 4\nprint(longest_zero_sum_subarray([1, 2, 3, 4, 5]))     # Output: 0",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756201003.json",
+      "answer": 4,
+      "python_code": "def longest_zero_sum_subarray(arr):\n    # Dictionary to store the first occurrence of each cumulative sum\n    sum_indices = {0: -1}\n    cumulative_sum = 0\n    max_length = 0\n\n    for i, num in enumerate(arr):\n        cumulative_sum += num\n\n        if cumulative_sum in sum_indices:\n            # Calculate the length of the subarray\n            subarray_length = i - sum_indices[cumulative_sum]\n            max_length = max(max_length, subarray_length)\n        else:\n            # Store the first occurrence of this cumulative sum\n            sum_indices[cumulative_sum] = i\n\n    return max_length\n\n# Example usage\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Output: 4",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756201034.json",
+      "answer": 4,
+      "python_code": "def longest_zero_sum_subarray(arr):\n    prefix_sum = 0\n    seen = {0: -1}\n    max_length = 0\n    for i, num in enumerate(arr):\n        prefix_sum += num\n        if prefix_sum in seen:\n            max_length = max(max_length, i - seen[prefix_sum])\n        else:\n            seen[prefix_sum] = i\n    return max_length\n\n# Example usage\nprint(longest_zero_sum_subarray([1, 2, -2, 4, -4]))  # Output: 4\nprint(longest_zero_sum_subarray([1, 2, 3, 4, 5]))  # Output: 0",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:devstral-medium-2507",
+    "temperature": 0.92,
+    "total_completion_tokens": 1705,
+    "total_cost": 0.0077308,
+    "total_elapsed_time": 22.563907000000004,
+    "tokens_per_second": 75.56315490929828
+  }
+}

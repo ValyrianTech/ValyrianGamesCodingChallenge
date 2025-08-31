@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827120700607275",
+  "timestamp": "2025-08-27T14:18:45.405661",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all positive integers that are equal to the sum of the factorial of their digits. For example, 145 is such a number because 1! + 4! + 5! = 1 + 24 + 120 = 145. Note that single-digit numbers are included in this calculation.",
+    "example_code": "# Precompute factorials for digits 0-9\ndigit_facts = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n\n# Calculate sum of valid numbers\ntotal = 0\nfor num in range(1, 2540161):\n    if num == sum(digit_facts[int(d)] for d in str(num)):\n        total += num\nprint(total)",
+    "expected_answer": 40733
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756296618.json",
+      "answer": 40733,
+      "python_code": "fact = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\\ntotal = 0\\nfor num in range(1, 2540161):\\n    if sum(fact[int(d)] for d in str(num)) == num:\\n        total += num\\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756296772.json",
+      "answer": 40733,
+      "python_code": "fact = [1] * 10\nfor i in range(1, 10):\n    fact[i] = fact[i-1] * i\n\ntotal = 0\nfor num in range(1, 2540161):\n    n = num\n    s = 0\n    while n:\n        s += fact[n % 10]\n        n //= 10\n    if s == num:\n        total += num\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756296871.json",
+      "answer": 40733,
+      "python_code": "factorials = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n\ntotal = 0\nfor n in range(1, 2540161):\n    s = 0\n    for digit in str(n):\n        s += factorials[int(digit)]\n    if s == n:\n        total += n\n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756296988.json",
+      "answer": 40733,
+      "python_code": "# Precompute factorials for digits 0-9\nfactorials = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n\n# Upper bound calculation: 7 * 9! = 2540160\nupper_bound = 2540160\nvalid_numbers = []\n\nfor num in range(1, upper_bound + 1):\n    total = 0\n    for digit in str(num):\n        total += factorials[int(digit)]\n    if total == num:\n        valid_numbers.append(num)\n\nresult = sum(valid_numbers)\nresult",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756297121.json",
+      "answer": 40733,
+      "python_code": "def main():\n    factorials = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n    total = 0\n    upper_bound = 2540160\n    for num in range(1, upper_bound + 1):\n        s = 0\n        n = num\n        while n:\n            s += factorials[n % 10]\n            n //= 10\n        if s == num:\n            total += num\n    return total\n\nprint(main())",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507",
+    "temperature": 0.97,
+    "total_completion_tokens": 33689,
+    "total_cost": 0.13309315000000002,
+    "total_elapsed_time": 509.467943,
+    "tokens_per_second": 66.12584847168687
+  }
+}

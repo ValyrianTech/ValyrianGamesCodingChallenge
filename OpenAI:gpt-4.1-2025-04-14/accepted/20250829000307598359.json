@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829000307598359",
+  "timestamp": "2025-08-29T02:07:33.591957",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "A \"digit-trick number\" is a positive integer N such that the sum of the digits of N equals the product of the digits of N.\n\nLet S be the set of all digit-trick numbers between 10 and 10,000 (inclusive) that are divisible by exactly three distinct prime numbers.\n\nWhat is the sum of all elements in S?\n\nYour answer should be a single integer: the sum of all such numbers N.",
+    "example_code": "# Find all numbers N in [10, 10000] such that:\n# (1) sum of digits == product of digits\n# (2) N is divisible by exactly three distinct prime numbers\n\ndef sum_digits(n):\n    return sum(int(d) for d in str(n))\n\ndef prod_digits(n):\n    prod = 1\n    for d in str(n):\n        prod *= int(d)\n    return prod\n\ndef distinct_prime_factors(n):\n    \"\"\"Return the set of distinct prime factors of n\"\"\"\n    i = 2\n    factors = set()\n    while i * i <= n:\n        if n % i == 0:\n            factors.add(i)\n            while n % i == 0:\n                n //= i\n        i += 1\n    if n > 1:\n        factors.add(n)\n    return factors\n\nS = []\nfor N in range(10, 10001):\n    if sum_digits(N) == prod_digits(N):\n        pf = distinct_prime_factors(N)\n        if len(pf) == 3:\n            S.append(N)\n\nprint(sum(S))",
+    "expected_answer": 2789
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756425863.json",
+      "answer": 2789,
+      "python_code": "# Find the sum of all digit-trick numbers between 10 and 10,000 inclusive\n# that are divisible by exactly three distinct prime numbers.\nimport math\n\ndef sum_digits(n):\n    return sum(int(d) for d in str(n))\n\ndef prod_digits(n):\n    prod = 1\n    for d in str(n):\n        prod *= int(d)\n    return prod\n\ndef distinct_prime_factors(n):\n    primes = set()\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            primes.add(i)\n            while n % i == 0:\n                n //= i\n        i += 1\n    if n > 1:\n        primes.add(n)\n    return primes\n\ntotal = 0\nfor N in range(10, 10001):\n    if sum_digits(N) == prod_digits(N):\n        primes = distinct_prime_factors(N)\n        if len(primes) == 3:\n            total += N\n\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756425909.json",
+      "answer": 2789,
+      "python_code": "# Step 1: Function to check if a number is a digit-trick number\ndef is_digit_trick(n):\n    digits = [int(d) for d in str(n)]\n    s = sum(digits)\n    p = 1\n    for d in digits:\n        p *= d\n    return s == p\n\n# Step 2: Function to get distinct prime divisors\ndef prime_factors(n):\n    factors = set()\n    d = 2\n    while d * d <= n:\n        if n % d == 0:\n            factors.add(d)\n            while n % d == 0:\n                n //= d\n        d += 1\n    if n > 1:\n        factors.add(n)\n    return factors\n\n# Step 3: Loop and sum\ntotal = 0\nfor n in range(10, 10001):\n    if is_digit_trick(n):\n        pf = prime_factors(n)\n        if len(pf) == 3:\n            total += n\n\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756425967.json",
+      "answer": 2789,
+      "python_code": "# Find all digit-trick numbers N in [10, 10000] that are divisible by exactly 3 distinct primes, sum them.\n\nfrom math import prod, isqrt\n\ndef digit_trick(n):\n    digits = [int(d) for d in str(n)]\n    return sum(digits) == prod(digits)\n\ndef sieve(n):\n    is_prime = [True]*(n+1)\n    is_prime[0] = is_prime[1] = False\n    for i in range(2, isqrt(n)+1):\n        if is_prime[i]:\n            for j in range(i*i, n+1, i):\n                is_prime[j] = False\n    return [i for i, v in enumerate(is_prime) if v]\n\nprimes = sieve(10000)\n\n# Function to count distinct prime divisors\ndef count_distinct_primes(n):\n    cnt = 0\n    for p in primes:\n        if p*p > n:\n            break\n        if n % p == 0:\n            cnt += 1\n            while n % p == 0:\n                n //= p\n    if n > 1:\n        cnt += 1\n    return cnt\n\ntotal = 0\nfor n in range(10, 10001):\n    if digit_trick(n):\n        if count_distinct_primes(n) == 3:\n            total += n\n\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756426011.json",
+      "answer": 2789,
+      "python_code": "from math import prod\n\ndef sum_digits(n):\n    return sum(int(d) for d in str(n))\n\ndef prod_digits(n):\n    digits = [int(d) for d in str(n)]\n    return prod(digits)\n\ndef get_prime_factors(n):\n    factors = set()\n    d = 2\n    while d * d <= n:\n        if n % d == 0:\n            factors.add(d)\n            n //= d\n        else:\n            d += 1\n    if n > 1:\n        factors.add(n)\n    return factors\n\ns = 0\nfor N in range(10, 10001):\n    if sum_digits(N) == prod_digits(N):\n        pf = get_prime_factors(N)\n        if len(pf) == 3:\n            s += N\ns",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756426052.json",
+      "answer": 2789,
+      "python_code": "# Find all digit-trick numbers N in [10, 10000] divisible by exactly three distinct primes, sum them.\ndef sum_and_product_of_digits(n):\n    s = 0\n    p = 1\n    for d in str(n):\n        d = int(d)\n        s += d\n        p *= d\n    return s, p\n\ndef prime_factors(n):\n    # Returns set of distinct prime divisors\n    i = 2\n    factors = set()\n    while i * i <= n:\n        if n % i == 0:\n            factors.add(i)\n            while n % i == 0:\n                n //= i\n        i += 1\n    if n > 1:\n        factors.add(n)\n    return factors\n\ntotal = 0\nfor N in range(10, 10001):\n    s, p = sum_and_product_of_digits(N)\n    if s != p:\n        continue\n    factors = prime_factors(N)\n    if len(factors) == 3:\n        total += N\n\ntotal",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4.1-2025-04-14",
+    "temperature": 0.72,
+    "total_completion_tokens": 4973,
+    "total_cost": 0.11464800000000001,
+    "total_elapsed_time": 104.28925199999998,
+    "tokens_per_second": 47.68468374861871
+  }
+}

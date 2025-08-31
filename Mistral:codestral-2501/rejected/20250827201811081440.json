@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827201811081440",
+  "timestamp": "2025-08-27T22:21:19.770296",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 2,
+    "success_rate": 0.4,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Given a sequence of integers, find the length of the longest contiguous subsequence where the sum of the subsequence is exactly zero. The sequence will contain both positive and negative integers.",
+    "example_code": "def longest_zero_sum_subsequence(seq):\n    sum_map = {0: -1}\n    current_sum = 0\n    max_length = 0\n\n    for i, num in enumerate(seq):\n        current_sum += num\n        if current_sum in sum_map:\n            max_length = max(max_length, i - sum_map[current_sum])\n        else:\n            sum_map[current_sum] = i\n\n    return max_length\n\n# Example usage\nsequence = [1, 2, -3, 3, -2, 1, -1]\nprint(longest_zero_sum_subsequence(sequence))  # Output: 6",
+    "expected_answer": 6
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756325934.json",
+      "answer": 6,
+      "python_code": "def longest_zero_sum_subsequence(sequence):\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n    \n    for i, num in enumerate(sequence):\n        cumulative_sum += num\n        \n        if cumulative_sum == 0:\n            max_length = i + 1\n        \n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            sum_index_map[cumulative_sum] = i\n    \n    return max_length\n\nsequence = [1, 2, -3, 3, 1, -1, 4, -4]\nanswer = longest_zero_sum_subsequence(sequence)\nanswer",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756325970.json",
+      "answer": 7,
+      "python_code": "def longest_zero_sum_subsequence(sequence):\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n    \n    for i, num in enumerate(sequence):\n        cumulative_sum += num\n        \n        if cumulative_sum == 0:\n            max_length = i + 1\n        \n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            sum_index_map[cumulative_sum] = i\n    \n    return max_length\n\n# Test the function with an example sequence\nsequence = [1, 2, -3, 3, 1, -2, 1, 4, -4]\nanswer = longest_zero_sum_subsequence(sequence)\nanswer",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756326004.json",
+      "answer": 3,
+      "python_code": "def longest_zero_sum_subsequence(sequence):\n    # Dictionary to store the cumulative sum and its index\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n\n    for i, num in enumerate(sequence):\n        cumulative_sum += num\n\n        if cumulative_sum == 0:\n            max_length = i + 1\n\n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            sum_index_map[cumulative_sum] = i\n\n    return max_length\n\n# Example sequence\nsequence = [1, 2, -3, 3, -1, 2]\nanswer = longest_zero_sum_subsequence(sequence)\nanswer",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756326039.json",
+      "answer": 7,
+      "python_code": "def longest_zero_sum_subsequence(sequence):\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n    \n    for i, num in enumerate(sequence):\n        cumulative_sum += num\n        \n        if cumulative_sum == 0:\n            max_length = i + 1\n        \n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            sum_index_map[cumulative_sum] = i\n    \n    return max_length\n\n# Test the function with a sample sequence\nsequence = [1, 2, -2, 4, -4, 0, 1, -1]\nlongest_zero_sum_subsequence(sequence)",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756326074.json",
+      "answer": 6,
+      "python_code": "def longest_zero_sum_subsequence_length(sequence):\n    sum_index_map = {}\n    cumulative_sum = 0\n    max_length = 0\n\n    for i, num in enumerate(sequence):\n        cumulative_sum += num\n\n        if cumulative_sum == 0:\n            max_length = i + 1\n\n        if cumulative_sum in sum_index_map:\n            max_length = max(max_length, i - sum_index_map[cumulative_sum])\n        else:\n            sum_index_map[cumulative_sum] = i\n\n    return max_length\n\nsequence = [1, 2, -3, 3, 1, -1, 2, -2]\nanswer = longest_zero_sum_subsequence_length(sequence)\nanswer",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:codestral-2501",
+    "temperature": 0.74,
+    "total_completion_tokens": 5371,
+    "total_cost": 0.0109088,
+    "total_elapsed_time": 35.228544,
+    "tokens_per_second": 152.46159477950607
+  }
+}

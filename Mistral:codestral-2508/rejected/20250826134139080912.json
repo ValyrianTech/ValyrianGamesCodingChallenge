@@ -1,0 +1,45 @@
+{
+  "conversation_id": "20250826134139080912",
+  "timestamp": "2025-08-26T15:53:35.031659",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 2,
+    "correct_answers": 0,
+    "success_rate": 0.0,
+    "accepted": false
+  },
+  "status": "REJECTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest 10-digit self-descriptive number. A self-descriptive number is one where the first digit indicates how many zeros are in the number, the second digit indicates how many ones, and so on. For example, 1210 is a 4-digit self-descriptive number. Your solution must return the smallest 10-digit number that satisfies this property.",
+    "example_code": "# Python code to find the smallest 10-digit self-descriptive number\n\ndef is_self_descriptive(n):\n    s = str(n)\n    for i in range(len(s)):\n        count = s.count(str(i))\n        if count != int(s[i]):\n            return False\n    return True\n\n# Start checking from the smallest 10-digit number\nstart = 10**9\nwhile True:\n    if is_self_descriptive(start):\n        print(start)\n        break\n    start += 1",
+    "expected_answer": 1210101020
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756215737.json",
+      "answer": 6210001000,
+      "python_code": "def is_self_descriptive(num):\n    s = str(num)\n    if len(s) != 10:\n        return False\n    if s[0] != '0':\n        return False\n    counts = [0] * 10\n    for digit in s:\n        counts[int(digit)] += 1\n    for i in range(10):\n        if counts[i] != int(s[i]):\n            return False\n    return True\n\ndef find_smallest_self_descriptive():\n    start = 1000000000\n    while True:\n        if is_self_descriptive(start):\n            return start\n        start += 1\n\nanswer = find_smallest_self_descriptive()",
+      "is_correct": false
+    },
+    {
+      "filename": "challenge_candidate_solution_1756216411.json",
+      "answer": 1210112220,
+      "python_code": "# /// script\n# dependencies = []\n# ///\ndef is_self_descriptive(num):\n    s = str(num)\n    for i in range(len(s)):\n        digit_count = s.count(str(i))\n        if int(s[i]) != digit_count:\n            return False\n    return True\n\ndef find_smallest_self_descriptive_10digit():\n    # Start from the smallest 10-digit number\n    for num in range(1000000000, 1023456789):\n        if is_self_descriptive(num):\n            return num\n    return None\n\n# Find and return the smallest 10-digit self-descriptive number\nfind_smallest_self_descriptive_10digit()",
+      "is_correct": false
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:codestral-2508",
+    "temperature": 0.24,
+    "total_completion_tokens": 4589,
+    "total_cost": 0.011519399999999997,
+    "total_elapsed_time": 59.729246,
+    "tokens_per_second": 76.83003398368699
+  }
+}

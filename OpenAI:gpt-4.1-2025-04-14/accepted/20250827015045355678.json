@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827015045355678",
+  "timestamp": "2025-08-27T03:56:08.750754",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Let S be a sequence of positive integers defined as follows:\n\n- S[1] = 1\n- For n > 1, S[n] is the smallest positive integer not already in the sequence such that the sum S[n] + S[n-1] is a perfect square.\n\nFor example, S[2] = 3, because 1+3=4 is a perfect square, and 3 is the smallest unused integer for which this is true.\n\nTask: What is the 20th term of the sequence S?",
+    "example_code": "\ndef is_perfect_square(x):\n    r = int(x ** 0.5)\n    return r * r == x\n\nS = [1]\nused = {1}\nfor n in range(2, 21):\n    prev = S[-1]\n    candidate = 2\n    while True:\n        if candidate not in used and is_perfect_square(prev + candidate):\n            S.append(candidate)\n            used.add(candidate)\n            break\n        candidate += 1\nprint(S[19])  # 20th term (0-based index)\n",
+    "expected_answer": 31
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756259508.json",
+      "answer": 31,
+      "python_code": "\n# Find the 20th term of the sequence S as described\nimport math\n\nS = [1]\nused = set(S)\n\nwhile len(S) < 20:\n    prev = S[-1]\n    candidate = None\n    k = 2\n    found = False\n    while not found:\n        sq = k * k\n        x = sq - prev\n        if x > 0 and x not in used:\n            candidate = x\n            found = True\n        else:\n            k += 1\n    S.append(candidate)\n    used.add(candidate)\n\n# The 20th term (0-based index 19)\nS[19]\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756259557.json",
+      "answer": 31,
+      "python_code": "\ndef is_perfect_square(x):\n    root = int(x ** 0.5)\n    return root * root == x\n\nS = [1]\nused = set(S)\n\nwhile len(S) < 20:\n    prev = S[-1]\n    k = 2\n    while True:\n        if k not in used and is_perfect_square(k + prev):\n            S.append(k)\n            used.add(k)\n            break\n        k += 1\n\nanswer = S[19]  # 0-based index\nanswer, S\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756259616.json",
+      "answer": 31,
+      "python_code": "# Find the 20th term of the sequence S as described\nimport math\n\nS = [1]\nused = set(S)\n\ndef is_perfect_square(x):\n    r = int(math.isqrt(x))\n    return r*r == x\n\nfor n in range(2, 21):\n    prev = S[-1]\n    k = 2\n    while True:\n        if k not in used and is_perfect_square(prev + k):\n            S.append(k)\n            used.add(k)\n            break\n        k += 1\n# S[19] is the 20th term\nS[19]",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756259725.json",
+      "answer": 31,
+      "python_code": "\ndef is_perfect_square(x):\n    r = int(x ** 0.5)\n    return r * r == x\n\nS = [1]\nused = set(S)\n\nfor n in range(2, 21):\n    prev = S[-1]\n    k = 2\n    while True:\n        if k not in used and is_perfect_square(prev + k):\n            S.append(k)\n            used.add(k)\n            break\n        k += 1\n\n# The 20th term is S[19]\nS[19]\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756259765.json",
+      "answer": 31,
+      "python_code": "# Build the sequence S as described\nimport math\n\nS = [1]\nused = set(S)\n\ndef is_perfect_square(x):\n    r = int(math.isqrt(x))\n    return r * r == x\n\nfor n in range(2, 21):\n    prev = S[-1]\n    candidate = 1\n    while True:\n        if candidate not in used and is_perfect_square(prev + candidate):\n            S.append(candidate)\n            used.add(candidate)\n            break\n        candidate += 1\n# S[19] is the 20th term\nS[19]",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4.1-2025-04-14",
+    "temperature": 0.39,
+    "total_completion_tokens": 3408,
+    "total_cost": 0.100916,
+    "total_elapsed_time": 160.26442300000002,
+    "tokens_per_second": 21.26485676736876
+  }
+}

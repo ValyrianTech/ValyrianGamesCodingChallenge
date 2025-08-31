@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829071051242053",
+  "timestamp": "2025-08-29T09:19:10.812107",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Consider all permutations of the digits 1 through 9 (each digit used exactly once) to form 9-digit strings. For a given permutation, look at the eight adjacent two-digit numbers formed by positions (1-2, 2-3, ..., 8-9). A two-digit number is considered prime if it is a prime between 10 and 99. How many permutations have exactly four of these adjacent two-digit numbers that are prime? Return the answer as a single integer (the password).",
+    "example_code": "from itertools import permutations\n\n# Precompute two-digit primes\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprimes = {n for n in range(10, 100) if is_prime(n)}\n\ncount = 0\nfor p in permutations('123456789', 9):\n    s = ''.join(p)\n    prime_adj = 0\n    for i in range(8):\n        if int(s[i:i+2]) in primes:\n            prime_adj += 1\n    if prime_adj == 4:\n        count += 1\n\nprint(count)\n",
+    "expected_answer": 31200
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756451635.json",
+      "answer": 31200,
+      "python_code": "from itertools import permutations\n\n# Precompute two-digit primes between 10 and 99\nprimes = set()\nfor n in range(10, 100):\n    is_prime = True\n    for d in range(2, int(n**0.5) + 1):\n        if n % d == 0:\n            is_prime = False\n            break\n    if is_prime:\n        primes.add(n)\n\ncount = 0\nfor perm in permutations('123456789'):\n    s = ''.join(perm)\n    prime_adj = sum(1 for i in range(8) if int(s[i:i+2]) in primes)\n    if prime_adj == 4:\n        count += 1\n\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756451710.json",
+      "answer": 31200,
+      "python_code": "import itertools\\nimport math\\n\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n % 2 == 0:\\n        return n == 2\\n    r = int(math.isqrt(n))\\n    for i in range(3, r+1, 2):\\n        if n % i == 0:\\n            return False\\n    return True\\n\\nprimes = set(n for n in range(10, 100) if is_prime(n))\\n\\ncount = 0\\nfor perm in itertools.permutations('123456789'):\\n    prime_adj = 0\\n    for i in range(8):\\n        num = int(perm[i]) * 10 + int(perm[i+1])\\n        if num in primes:\\n            prime_adj += 1\\n    if prime_adj == 4:\\n        count += 1\\n\\nprint(count)\\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756451799.json",
+      "answer": 31200,
+      "python_code": "import itertools\n\ndef primeset():\n    sieve = [True]*100\n    sieve[0] = sieve[1] = False\n    for i in range(2, 100):\n        if sieve[i]:\n            for j in range(i*i, 100, i):\n                sieve[j] = False\n    return {i for i in range(10, 100) if sieve[i]}\n\npr = primeset()\ncount = 0\nfor p in itertools.permutations('123456789'):\n    s = ''.join(p)\n    c = 0\n    for i in range(8):\n        if int(s[i:i+2]) in pr:\n            c += 1\n    if c == 4:\n        count += 1\nprint(count)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756451876.json",
+      "answer": 31200,
+      "python_code": "from itertools import permutations\n\n# Precompute two-digit primes (10-99)\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprimes = {n for n in range(10, 100) if is_prime(n)}\n\ncount = 0\nfor perm in permutations('123456789'):\n    c = 0\n    for i in range(8):\n        num = int(perm[i]) * 10 + int(perm[i+1])\n        if num in primes:\n            c += 1\n    if c == 4:\n        count += 1\n\nprint(count)\ncount\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756451949.json",
+      "answer": 31200,
+      "python_code": "from itertools import permutations\n\n# Precompute two-digit primes\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprimes = {n for n in range(10, 100) if is_prime(n)}\n\ncount = 0\nfor perm in permutations(range(1, 10)):\n    c = 0\n    for i in range(8):\n        num = perm[i] * 10 + perm[i + 1]\n        if num in primes:\n            c += 1\n    if c == 4:\n        count += 1\n\nprint(count)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.01,
+    "total_completion_tokens": 21429,
+    "total_cost": 0.05154925,
+    "total_elapsed_time": 313.8281,
+    "tokens_per_second": 68.28260439393414
+  }
+}

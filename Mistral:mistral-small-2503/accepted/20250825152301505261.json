@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250825152301505261",
+  "timestamp": "2025-08-25T17:26:01.573370",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a string `s` consisting of lowercase English letters. You need to find the maximum number of unique substrings of length 3 that can be formed from the string `s` such that each substring is lexicographically smaller than the next.\n\nFor example, if `s = \"abcabc\"`, the unique substrings of length 3 are \"abc\", \"bca\", \"cab\". However, only \"abc\" is lexicographically smaller than the next.\n\nThe final answer is the count of such substrings.\n\n**Example:**\n- Input: `s = \"abcabc\"`\n- Output: `1`\n\n**Constraints:**\n- `1 <= len(s) <= 1000`",
+    "example_code": "# /// script\n# dependencies = []\n# ///\ndef count_lexicographically_smaller_substrings(s):\n    n = len(s)\n    substrings = set()\n    for i in range(n - 2):\n        substring = s[i:i+3]\n        if all(substring < s[j:j+3] for j in range(i+1, n-2)):\n            substrings.add(substring)\n    return len(substrings)\n\n# Example usage\ns = \"abcabc\"\nresult = count_lexicographically_smaller_substrings(s)\nresult",
+    "expected_answer": 1
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756135425.json",
+      "answer": 1,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\nfrom typing import List\n\n\ndef find_max_unique_substrings(s: str) -> int:\n    n = len(s)\n    substrings = set()\n    for i in range(n - 2):\n        for j in range(i + 1, n - 1):\n            for k in range(j + 1, n):\n                substring = s[i:j] + s[j:k] + s[k:]\n                if substring not in substrings:\n                    substrings.add(substring)\n    return len(substrings)\n\n# Test the function with the example provided\ns = \"abcabc\"\nanswer = find_max_unique_substrings(s)\nprint(answer)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756135456.json",
+      "answer": 1,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\n\nfrom typing import List\n\n\ndef find_max_unique_substrings(s: str) -> int:\n    n = len(s)\n    if n < 3:\n        return 0\n    substrings = set()\n    for i in range(n - 2):\n        substring = s[i:i+3]\n        if all(substring < s[j:j+3] for j in range(i+1, n-2)):\n            substrings.add(substring)\n    return len(substrings)\n\n# Example usage\ns = \"abcabc\"\nprint(find_max_unique_substrings(s))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756135494.json",
+      "answer": 1,
+      "python_code": "# /// script\n# dependencies = ['more_itertools']\nfrom more_itertools import windowed\n\ndef max_unique_lexicographical_substrings(s):\n    n = len(s)\n    if n < 3:\n        return 0\n    substrings = set()\n    for i in range(n - 2):\n        substr = s[i:i+3]\n        if all(substr < s[j:j+3] for j in range(i+1, n-2)):\n            substrings.add(substr)\n    return len(substrings)\n\n# Example usage\ns = \"abcabc\"\nprint(max_unique_lexicographical_substrings(s))",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756135527.json",
+      "answer": 1,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\n\nfrom typing import List\n\n\ndef find_max_unique_substrings(s: str) -> int:\n    n = len(s)\n    substrings = set()\n    for i in range(n - 2):\n        substring = s[i:i+3]\n        if substring not in substrings:\n            substrings.add(substring)\n    \n    # Sort the substrings lexicographically\n    sorted_substrings = sorted(substrings)\n    \n    # Initialize the count of valid substrings\n    count = 0\n    \n    # Iterate through the sorted substrings to find the maximum number of valid substrings\n    for i in range(len(sorted_substrings) - 1):\n        if sorted_substrings[i] < sorted_substrings[i + 1]:\n            count += 1\n    \n    # The last substring is always valid if there is more than one substring\n    if count > 0 or len(sorted_substrings) == 1:\n        count += 1\n    \n    return count\n\n# Example usage\ns = \"abcabc\"\nanswer = find_max_unique_substrings(s)\nprint(answer)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756135560.json",
+      "answer": 1,
+      "python_code": "# /// script\n# dependencies = ['pydantic']\n# ///\n\ndef find_max_unique_substrings(s):\n    n = len(s)\n    if n < 3:\n        return 0\n    substrings = set()\n    for i in range(n - 2):\n        for j in range(i + 1, n - 1):\n            sub1 = s[i:i+3]\n            sub2 = s[j:j+3]\n            if sub1 < sub2:\n                substrings.add(sub1)\n    return len(substrings)\n\n# Example usage\ns = \"abcabc\"\nanswer = find_max_unique_substrings(s)\nprint(answer)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Mistral:mistral-small-2503",
+    "temperature": 0.38,
+    "total_completion_tokens": 2901,
+    "total_cost": 0.0031378000000000005,
+    "total_elapsed_time": 28.202358000000004,
+    "tokens_per_second": 102.8637392660571
+  }
+}

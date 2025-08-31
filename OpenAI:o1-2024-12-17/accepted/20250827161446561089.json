@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827161446561089",
+  "timestamp": "2025-08-27T18:20:27.612182",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Your challenge is to find all prime numbers between 2 and 300. For each prime, calculate the sum of the squares of its digits (for example, if the prime is 13, the squares of the digits are 1^2 + 3^2 = 1 + 9 = 10). After computing these values for all prime numbers in this range, sum them up. The single integer result of this summation is the 'password' to solve the challenge.",
+    "example_code": "def is_prime(n):\\n    if n < 2:\\n        return False\\n    if n == 2:\\n        return True\\n    if n % 2 == 0:\\n        return n == 2\\n    r = int(n**0.5)\\n    for i in range(3, r+1, 2):\\n        if n % i == 0:\\n            return False\\n    return True\\n\\ntotal_sum = 0\\nfor x in range(2, 301):\\n    if is_prime(x):\\n        ssd = sum(int(d)**2 for d in str(x))\\n        total_sum += ssd\\n\\nprint(total_sum)\\n",
+    "expected_answer": 3758
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756311396.json",
+      "answer": 3758,
+      "python_code": "import math\\n\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    for i in range(2, int(math.isqrt(n)) + 1):\\n        if n % i == 0:\\n            return False\\n    return True\\n\\ntotal_sum = 0\\nfor num in range(2, 301):\\n    if is_prime(num):\\n        ssd = sum(int(digit)**2 for digit in str(num))\\n        total_sum += ssd\\nprint(total_sum)\\ntotal_sum",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756311445.json",
+      "answer": 3758,
+      "python_code": "# We'll solve the challenge: find all primes from 2..300, compute sum of square of digits for each prime,\\n# and then sum all of those results.\\n\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n == 2:\\n        return True\\n    if n % 2 == 0:\\n        return False\\n    r = int(n**0.5)\\n    for i in range(3, r+1, 2):\\n        if n % i == 0:\\n            return False\\n    return True\\n\\nsum_total = 0\\nfor num in range(2, 301):\\n    if is_prime(num):\\n        digits = [int(d) for d in str(num)]\\n        sum_of_squares = sum(d*d for d in digits)\\n        sum_total += sum_of_squares\\n\\nsum_total",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756311498.json",
+      "answer": 3758,
+      "python_code": "import math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(math.isqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ntotal = 0\nfor num in range(2, 301):\n    if is_prime(num):\n        ssd = sum(int(d)**2 for d in str(num))\n        total += ssd\nprint(total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756311563.json",
+      "answer": 3758,
+      "python_code": "# We'll compute the sum of squares of digits for all primes between 2 and 300.\n\ndef is_prime(n: int) -> bool:\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n\ndef sum_of_squares_of_digits(n: int) -> int:\n    s = 0\n    while n > 0:\n        d = n % 10\n        s += d*d\n        n //=10\n    return s\n\nsum_all = 0\nfor num in range(2, 301):\n    if is_prime(num):\n        sum_all += sum_of_squares_of_digits(num)\n\nprint(sum_all)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756311625.json",
+      "answer": 3758,
+      "python_code": "# We'll find all primes between 2 and 300, compute the sum of the squares of their digits, and sum those.\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\nprimes = [i for i in range(2, 301) if is_prime(i)]\n\ndef sum_of_squares_of_digits(num):\n    return sum(int(d)**2 for d in str(num))\n\nanswer = sum(sum_of_squares_of_digits(p) for p in primes)\nanswer",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:o1-2024-12-17",
+    "temperature": 0.73,
+    "total_completion_tokens": 17322,
+    "total_cost": 1.557135,
+    "total_elapsed_time": 158.63412499999998,
+    "tokens_per_second": 109.19466413673604
+  }
+}

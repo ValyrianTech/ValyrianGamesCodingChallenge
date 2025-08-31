@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827091817399594",
+  "timestamp": "2025-08-27T11:21:31.867441",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Consider all positive integers n such that 1 \\u2264 n \\u2264 50000 and the sum of the factorials of the decimal digits of n equals n itself. For example, for n = 145, 1! + 4! + 5! = 145. Compute the sum of all such integers n in the given range. Output only the final sum as a single integer.",
+    "example_code": "import math\\n\\n# Find all numbers n (1 <= n <= 50000) where the sum of the factorials of its digits equals n\\nresult = sum(\n    n for n in range(1, 50001)\n    if sum(math.factorial(int(d)) for d in str(n)) == n\n)\\nprint(result)  # -> 40733",
+    "expected_answer": 40733
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756286345.json",
+      "answer": 40733,
+      "python_code": "def sum_factorion_numbers(limit=50000):\n    import math\n    factorial = [math.factorial(i) for i in range(10)]\n    result = []\n    for n in range(1, limit + 1):\n        if n == sum(factorial[int(d)] for d in str(n)):\n            result.append(n)\n    return result\n\nif __name__ == \"__main__\":\n    numbers = sum_factorion_numbers()\n    total = sum(numbers)\n    print('Factorion numbers:', numbers)\n    print('Sum:', total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756286387.json",
+      "answer": 40733,
+      "python_code": "import math\nmatches = [n for n in range(1, 50001) if sum(math.factorial(int(d)) for d in str(n)) == n]\ntotal = sum(matches)\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756286428.json",
+      "answer": 40733,
+      "python_code": "import math\n\n# Find all numbers n (1 <= n <= 50000) such that the sum of the factorials of their decimal digits equals n.\n\ndef factorion_sum(limit: int):\n    numbers = []\n    for n in range(1, limit + 1):\n        digit_factorial_sum = sum(math.factorial(int(d)) for d in str(n))\n        if digit_factorial_sum == n:\n            numbers.append(n)\n    return numbers, sum(numbers)\n\nnums, total = factorion_sum(50000)\nprint(nums)   # For verification: [1, 2, 145, 40585]\nprint(total)  # The final answer: 40733",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756286461.json",
+      "answer": 40733,
+      "python_code": "def sum_factorion_numbers(limit=50000):\n    import math\n    factorial = [math.factorial(i) for i in range(10)]\n    result = []\n    for n in range(1, limit + 1):\n        if n == sum(factorial[int(d)] for d in str(n)):\n            result.append(n)\n    return result\n\nif __name__ == \"__main__\":\n    numbers = sum_factorion_numbers()\n    total = sum(numbers)\n    print('Factorion numbers:', numbers)\n    print('Sum:', total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756286490.json",
+      "answer": 40733,
+      "python_code": "import math\n\ndef digit_factorial_sum(n):\n    return sum(math.factorial(int(d)) for d in str(n))\n\nresult = []\nfor n in range(1, 50001):\n    if digit_factorial_sum(n) == n:\n        result.append(n)\nprint('Numbers found:', result)\nprint('Sum:', sum(result))",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Groq:openai/gpt-oss-120b",
+    "temperature": 0.79,
+    "total_completion_tokens": 8073,
+    "total_cost": 0.009279599999999999,
+    "total_elapsed_time": 36.699825,
+    "tokens_per_second": 219.973800964991
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829112123204440",
+  "timestamp": "2025-08-29T13:31:59.646798",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the sum of all 7-digit pandigital numbers (using each digit 1 through 7 exactly once) that are prime and remain prime after repeatedly truncating digits from the left one at a time and from the right one at a time. In other words, a 7-digit pandigital number N qualifies if N is prime, every left-truncation of N is prime, and every right-truncation of N is prime. Return the sum of all such numbers as a single integer. (If no such numbers exist, return 0.)",
+    "example_code": "import itertools, math\n\n# Primality test\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    r = int(math.isqrt(n))\n    for i in range(3, r+1, 2):\n        if n % i == 0:\n            return False\n    return True\n\npandigital = '1234567'\nvalid_numbers = []\nfor p in itertools.permutations(pandigital):\n    s = ''.join(p)\n    n = int(s)\n    if not is_prime(n):\n        continue\n    ok = True\n    # left-truncations: remove leading digits\n    for k in range(1, len(s)):\n        if not is_prime(int(s[k:])):\n            ok = False\n            break\n    if not ok:\n        continue\n    # right-truncations: remove trailing digits\n    for k in range(1, len(s)):\n        if not is_prime(int(s[:-k])):\n            ok = False\n            break\n    if ok:\n        valid_numbers.append(n)\n\nresult_sum = sum(valid_numbers)\nprint('valid_numbers =', sorted(valid_numbers))\nprint('count =', len(valid_numbers))\nprint('sum =', result_sum)\n# The single-integer answer to return:\nresult_sum",
+    "expected_answer": 0
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756466736.json",
+      "answer": 0,
+      "python_code": "import itertools\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\nres = []\nfor perm in itertools.permutations('1234567'):\n    s = ''.join(perm)\n    n = int(s)\n    if not is_prime(n):\n        continue\n    ok = True\n    # left truncations: remove leftmost digits\n    for i in range(1, 7):\n        if not is_prime(int(s[i:])):\n            ok = False\n            break\n    if not ok:\n        continue\n    # right truncations: remove rightmost digits\n    for i in range(1, 7):\n        if not is_prime(int(s[:-i])):\n            ok = False\n            break\n    if ok:\n        res.append(n)\n\nsum_res = sum(res)\nprint(res)\nprint(sum_res)\n\nsum_res",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756466834.json",
+      "answer": 0,
+      "python_code": "import itertools\nimport math\n\n\ndef is_prime(n: int) -> bool:\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\n\ndigits = '1234567'\nresults = []\nfor p in itertools.permutations(digits, 7):\n    s = ''.join(p)\n    # quick checks: first and last digit must be a prime digit (2,3,5,7)\n    if s[0] not in '2357' or s[-1] not in '2357':\n        continue\n    n = int(s)\n    if not is_prime(n):\n        continue\n    good = True\n    # check all left-truncations and right-truncations\n    for i in range(1, 7):\n        left = int(s[i:])         # remove i digits from left\n        right = int(s[:-i])       # remove i digits from right\n        if not is_prime(left) or not is_prime(right):\n            good = False\n            break\n    if good:\n        results.append(n)\n\nans = sum(results)\nprint(ans)\nprint(results)\nprint('count=', len(results))\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756466933.json",
+      "answer": 0,
+      "python_code": "import itertools\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    r = int(math.isqrt(n))\n    i = 3\n    while i <= r:\n        if n % i == 0:\n            return False\n        i += 2\n    return True\n\n\ndigits = '1234567'\nresults = []\nfor perm in itertools.permutations(digits, 7):\n    s = ''.join(perm)\n    n = int(s)\n    if not is_prime(n):\n        continue\n    ok = True\n    # check left and right truncations\n    for i in range(1, 7):\n        left = int(s[i:])        # remove i leftmost digits\n        right = int(s[:-i])      # remove i rightmost digits\n        if not is_prime(left) or not is_prime(right):\n            ok = False\n            break\n    if ok:\n        results.append(n)\n\nprint(results)\nprint('count=', len(results))\nprint('sum=', sum(results))\n\n# For returning the single integer answer when used programmatically\nsum(results)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756467001.json",
+      "answer": 0,
+      "python_code": "from itertools import permutations\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n in (2, 3):\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    r = int(math.isqrt(n))\n    f = 5\n    while f <= r:\n        if n % f == 0 or n % (f + 2) == 0:\n            return False\n        f += 6\n    return True\n\n\ndigits = '1234567'\nresults = []\nfor p in permutations(digits, 7):\n    s = ''.join(p)\n    n = int(s)\n    if not is_prime(n):\n        continue\n    ok = True\n    # right truncations: remove last i digits\n    for i in range(1, 7):\n        t = int(s[:-i])\n        if not is_prime(t):\n            ok = False\n            break\n    if not ok:\n        continue\n    # left truncations: remove first i digits\n    for i in range(1, 7):\n        t = int(s[i:])\n        if not is_prime(t):\n            ok = False\n            break\n    if ok:\n        results.append(n)\n\nprint(results)\nprint(sum(results))\n\n# return the sum as the last value\nsum(results)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756467116.json",
+      "answer": 0,
+      "python_code": "import itertools\nimport math\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndigits = '1234567'\nres = []\nfor p in itertools.permutations(digits):\n    s = ''.join(p)\n    n = int(s)\n    if not is_prime(n):\n        continue\n    ok = True\n    # check all non-trivial left and right truncations\n    for i in range(1, len(s)):\n        if not is_prime(int(s[i:])):\n            ok = False\n            break\n        if not is_prime(int(s[:-i])):\n            ok = False\n            break\n    if ok:\n        res.append(n)\n\nprint(res)\nprint(sum(res))\n\nsum(res)",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-5-mini",
+    "temperature": 0.18,
+    "total_completion_tokens": 27975,
+    "total_cost": 0.0661945,
+    "total_elapsed_time": 453.5389,
+    "tokens_per_second": 61.68158894418979
+  }
+}

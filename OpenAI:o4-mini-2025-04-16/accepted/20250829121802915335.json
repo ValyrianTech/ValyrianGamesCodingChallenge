@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250829121802915335",
+  "timestamp": "2025-08-29T14:23:56.630890",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Consider all positive integers less than 20,000. For each integer n, compute f(n), the sum of the squares of its decimal digits. Find and output the sum of all n (1 \u2264 n < 20000) such that n is divisible by f(n). Provide your answer as a single integer.",
+    "example_code": "ans = sum(n for n in range(1, 20000) if n % sum(int(d)**2 for d in str(n)) == 0)\nprint(ans)",
+    "expected_answer": 2267126
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756470020.json",
+      "answer": 2267126,
+      "python_code": "total = 0\nfor n in range(1, 20000):\n    f = sum(int(d)**2 for d in str(n))\n    if n % f == 0:\n        total += n\nprint(total)\n# Return the result for verification\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756470074.json",
+      "answer": 2267126,
+      "python_code": "total = 0\nfor n in range(1, 20000):\n    ssd = sum(int(d)**2 for d in str(n))\n    if ssd != 0 and n % ssd == 0:\n        total += n\nprint(total)\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756470127.json",
+      "answer": 2267126,
+      "python_code": "# Calculate the sum of all n < 20000 such that n is divisible by the sum of squares of its digits\n\ndef sum_sq_digits(n):\n    return sum(int(d)**2 for d in str(n))\n\ntotal = sum(n for n in range(1, 20000) if n % sum_sq_digits(n) == 0)\ntotal",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756470179.json",
+      "answer": 2267126,
+      "python_code": "total = 0\nfor n in range(1, 20000):\n    s = sum(int(d)**2 for d in str(n))\n    if n % s == 0:\n        total += n\nprint(total)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756470233.json",
+      "answer": 2267126,
+      "python_code": "def f(n):\n    return sum(int(d)**2 for d in str(n))\n\nresult = sum(n for n in range(1, 20000) if n % f(n) == 0)\nprint(result)\n",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:o4-mini-2025-04-16",
+    "temperature": 0.07,
+    "total_completion_tokens": 16670,
+    "total_cost": 0.11259380000000001,
+    "total_elapsed_time": 174.77119299999998,
+    "tokens_per_second": 95.38185163043433
+  }
+}

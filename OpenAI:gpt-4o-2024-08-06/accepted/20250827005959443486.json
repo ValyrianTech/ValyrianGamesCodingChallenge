@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250827005959443486",
+  "timestamp": "2025-08-27T03:04:14.662061",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "You are given a list of integers. Your task is to find the maximum sum of a non-empty subsequence of the list such that no two elements in the subsequence are adjacent in the original list. The subsequence can have elements in any order, but the condition is that no two elements in the subsequence are adjacent in the original list. Return the maximum sum as a single integer.\n\nExample:\n\nGiven the list `[3, 2, 7, 10]`, the maximum sum of a non-adjacent subsequence is `13` (by picking `3` and `10`).",
+    "example_code": "\ndef max_non_adjacent_sum(nums):\n    if not nums:\n        return 0\n    if len(nums) == 1:\n        return nums[0]\n    \n    # Initialize two variables to store the maximum sum including and excluding the current element\n    include = 0\n    exclude = 0\n    \n    for num in nums:\n        # Current max excluding i (No adjacent)\n        new_exclude = max(include, exclude)\n        \n        # Current max including i\n        include = exclude + num\n        exclude = new_exclude\n    \n    # Return max of include and exclude\n    return max(include, exclude)\n\n# Test the function with an example\nnums = [3, 2, 7, 10]\nmax_sum = max_non_adjacent_sum(nums)\nprint(max_sum)\n",
+    "expected_answer": 13
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756256474.json",
+      "answer": 13,
+      "python_code": "\ndef max_non_adjacent_sum(arr):\n    if not arr:\n        return 0\n    elif len(arr) == 1:\n        return arr[0]\n    \n    # Initialize the dp array\n    dp = [0] * len(arr)\n    dp[0] = arr[0]\n    if len(arr) > 1:\n        dp[1] = max(arr[0], arr[1])\n    \n    # Fill the dp array\n    for i in range(2, len(arr)):\n        dp[i] = max(dp[i-1], arr[i] + dp[i-2])\n    \n    # The answer is the last element in the dp array\n    return dp[-1]\n\n# Test the function with the example list\nexample_list = [3, 2, 7, 10]\nmax_sum = max_non_adjacent_sum(example_list)\nmax_sum\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756256518.json",
+      "answer": 13,
+      "python_code": "\ndef max_non_adjacent_sum(nums):\n    if not nums:\n        return 0\n    \n    incl = 0\n    excl = 0\n    \n    for num in nums:\n        # Current max excluding i\n        new_excl = max(incl, excl)\n        \n        # Current max including i\n        incl = excl + num\n        excl = new_excl\n    \n    # Return max of incl and excl\n    return max(incl, excl)\n\n# Example list\nnums = [3, 2, 7, 10]\n# Get the maximum sum of non-adjacent subsequence\nmax_sum = max_non_adjacent_sum(nums)\nmax_sum\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756256560.json",
+      "answer": 13,
+      "python_code": "# Function to find the maximum sum of non-adjacent elements\n\ndef max_non_adjacent_sum(arr):\n    if not arr:\n        return 0\n    incl = 0\n    excl = 0\n    for num in arr:\n        # Current max excluding i\n        new_excl = max(incl, excl)\n        # Current max including i\n        incl = excl + num\n        excl = new_excl\n    # Return max of incl and excl\n    return max(incl, excl)\n\n# Test the function with the given example\nexample_list = [3, 2, 7, 10]\nmax_sum = max_non_adjacent_sum(example_list)\nmax_sum",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756256609.json",
+      "answer": 13,
+      "python_code": "\n# Define the function to find the maximum sum of non-adjacent subsequence\ndef max_non_adjacent_sum(arr):\n    if not arr:\n        return 0\n    n = len(arr)\n    if n == 1:\n        return arr[0]\n    \n    # Initialize the dp array\n    dp = [0] * n\n    \n    # Base cases\n    dp[0] = arr[0]\n    dp[1] = max(arr[0], arr[1])\n    \n    # Fill the dp array\n    for i in range(2, n):\n        dp[i] = max(dp[i-1], arr[i] + dp[i-2])\n    \n    # The result is the last element in dp array\n    return dp[-1]\n\n# Example input\narr = [3, 2, 7, 10]\n\n# Calculate the maximum sum\nmax_sum = max_non_adjacent_sum(arr)\n\n# Print the result\nmax_sum",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756256652.json",
+      "answer": 13,
+      "python_code": "\n# Function to find the maximum sum of non-adjacent subsequence\n\ndef max_non_adjacent_sum(nums):\n    if not nums:\n        return 0\n    n = len(nums)\n    if n == 1:\n        return nums[0]\n    # Initialize the dp array\n    dp = [0] * n\n    dp[0] = nums[0]\n    dp[1] = max(nums[0], nums[1])\n    # Fill the dp array\n    for i in range(2, n):\n        dp[i] = max(dp[i-1], nums[i] + dp[i-2])\n    # The answer is the last element in dp array\n    return dp[-1]\n\n# Example input\nnums = [3, 2, 7, 10]\n\n# Find the maximum sum of non-adjacent subsequence\nanswer = max_non_adjacent_sum(nums)\nanswer",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "OpenAI:gpt-4o-2024-08-06",
+    "temperature": 0.73,
+    "total_completion_tokens": 5776,
+    "total_cost": 0.15691000000000002,
+    "total_elapsed_time": 94.50849600000001,
+    "tokens_per_second": 61.11619848441985
+  }
+}

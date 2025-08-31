@@ -1,0 +1,63 @@
+{
+  "conversation_id": "20250830175228905132",
+  "timestamp": "2025-08-30T19:57:36.653308",
+  "directory": "/volumes/Serendipity/ValyrianGames",
+  "conversation_directory": "/volumes/Serendipity/ValyrianGames/conversations",
+  "parameters": {
+    "validation_attempts": 5,
+    "success_threshold": 0.5,
+    "agent": "Contender"
+  },
+  "validation_results": {
+    "total_attempts": 5,
+    "correct_answers": 5,
+    "success_rate": 1.0,
+    "accepted": true
+  },
+  "status": "ACCEPTED",
+  "challenge": {
+    "challenge_prompt": "Find the smallest positive integer greater than 2 that is equal to the sum of the factorials of its decimal digits. In other words, find the minimal n > 2 such that \\(n = \\sum_{d \\text{ in digits of } n} d!\\). Output only the integer answer.",
+    "example_code": "import math\\n\\ndef sum_factorial_digits(n):\\n    return sum(math.factorial(int(d)) for d in str(n))\\n\\nfor n in range(3, 1000000):\\n    if n == sum_factorial_digits(n):\\n        print(n)\\n        break  # prints 145",
+    "expected_answer": 145
+  },
+  "solution_attempts": [
+    {
+      "filename": "challenge_candidate_solution_1756576462.json",
+      "answer": 145,
+      "python_code": "import math\\n\\ndef is_factorion(n):\\n    return n == sum(math.factorial(int(d)) for d in str(n))\\n\\ndef find_smallest():\\n    for n in range(3, 500000):\\n        if is_factorion(n):\\n            return n\\n\\n# The result is 145\\nresult = find_smallest()\\nprint(result)\\n",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756576513.json",
+      "answer": 145,
+      "python_code": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    prod = 1\n    for i in range(2, n + 1):\n        prod *= i\n    return prod\n\ndef sum_digit_factorials(num):\n    return sum(factorial(int(d)) for d in str(num))\n\n# Upper bound: 7 * 9! = 2540160 (any larger number cannot be equal to the sum of its digit factorials)\nlimit = 7 * factorial(9)\nresult = []\nfor n in range(3, limit + 1):\n    if n == sum_digit_factorials(n):\n        result.append(n)\n\nprint('Factorions > 2:', result)  # Should output [145, 40585]\nprint('Smallest:', result[0])",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756576550.json",
+      "answer": 145,
+      "python_code": "def is_factorion(n):\n    import math\n    return n == sum(math.factorial(int(d)) for d in str(n))\n\n# Find the smallest factorion greater than 2\nn = 3\nwhile True:\n    if is_factorion(n):\n        print(n)\n        break\n    n += 1",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756576591.json",
+      "answer": 145,
+      "python_code": "print(145)",
+      "is_correct": true
+    },
+    {
+      "filename": "challenge_candidate_solution_1756576652.json",
+      "answer": 145,
+      "python_code": "def find_smallest_factorion():\n    import math\n    # Upper bound: 7 * 9! because a number with more than 7 digits cannot equal the sum of factorials of its digits\n    max_limit = 7 * math.factorial(9)\n    for n in range(3, max_limit + 1):\n        digit_factorial_sum = sum(math.factorial(int(d)) for d in str(n))\n        if n == digit_factorial_sum:\n            return n\n\nif __name__ == \"__main__\":\n    result = find_smallest_factorion()\n    print(result)  # Expected output: 145",
+      "is_correct": true
+    }
+  ],
+  "performance_metrics": {
+    "model_name": "Groq:openai/gpt-oss-120b",
+    "temperature": 0.43,
+    "total_completion_tokens": 9648,
+    "total_cost": 0.00957855,
+    "total_elapsed_time": 123.71370599999999,
+    "tokens_per_second": 77.98650862500232
+  }
+}
