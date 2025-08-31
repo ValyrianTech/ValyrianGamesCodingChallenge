@@ -2,6 +2,15 @@
 
 **The Ultimate AI Model Benchmarking Platform**
 
+---
+
+### 🔗 **Connect with ValyrianTech**
+[![Follow ValyrianTech](https://img.shields.io/badge/Follow-ValyrianTech-blue?style=for-the-badge&logo=linktree)](https://linktr.ee/ValyrianTech)
+
+**[🌟 Follow me on all platforms → linktr.ee/ValyrianTech](https://linktr.ee/ValyrianTech)**
+
+---
+
 Welcome to the Valyrian Games, an advanced AI benchmarking system that evaluates Large Language Models (LLMs) through rigorous coding challenges. This platform serves as the "Olympics of AI," providing comprehensive performance analytics, cost analysis, and qualification metrics for AI models across multiple providers.
 
 ## 🎯 System Overview
