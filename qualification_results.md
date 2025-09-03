@@ -1,6 +1,6 @@
 # Valyrian Games - Coding Challenge Statistics Report
 
-**Generated:** 2025-08-31 16:39:29
+**Generated:** 2025-09-01 23:02:30
 **Sorted by:** Acceptance Rate
 
 ## Visual Analytics Overview
@@ -23,8 +23,8 @@
 |-----------------------------------------------|------------|---------|----------|-----------|------------|
 | OpenAI:o1-2024-12-17                          |      11/11 |  100.0% |    98.2% |    $1.667 |   96.4 t/s |
 | OpenAI:gpt-5-mini                             |      37/41 |   90.2% |    97.4% |    $0.052 |   62.6 t/s |
-| Mistral:devstral-medium-2507                  |      43/48 |   89.6% |    88.8% |    $0.011 |   80.1 t/s |
-| OpenAI:o3-mini-2025-01-31                     |      39/44 |   88.6% |    88.6% |    $0.045 |  108.2 t/s |
+| Mistral:devstral-medium-2507                  |      44/49 |   89.8% |    89.0% |    $0.011 |   80.2 t/s |
+| OpenAI:o3-mini-2025-01-31                     |      40/45 |   88.9% |    88.9% |    $0.045 |  106.8 t/s |
 | OpenAI:gpt-4.1-2025-04-14                     |      34/39 |   87.2% |    84.7% |    $0.122 |   57.8 t/s |
 | OpenAI:o4-mini-2025-04-16                     |      26/34 |   76.5% |    81.6% |    $0.123 |   88.3 t/s |
 | Together-ai:Qwen/Qwen3-235B-A22B-Instruct-... |      37/50 |   74.0% |    77.1% |    $0.012 |   45.3 t/s |
@@ -131,46 +131,46 @@
 ## Mistral:devstral-medium-2507
 
 ### Challenge Summary
-- **Total Challenges:** 48
-- **Accepted:** 43 (89.6%)
-- **Rejected:** 5 (10.4%)
+- **Total Challenges:** 49
+- **Accepted:** 44 (89.8%)
+- **Rejected:** 5 (10.2%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 240
-- **Correct Attempts:** 213
-- **Overall Success Rate:** 88.8%
-- **Average Success Rate per Challenge:** 88.7%
+- **Total Solution Attempts:** 245
+- **Correct Attempts:** 218
+- **Overall Success Rate:** 89.0%
+- **Average Success Rate per Challenge:** 89.0%
 
 ### Performance Metrics
-- **Total Tokens:** 120,485
-- **Total Cost:** $0.5070
-- **Total Time:** 1505.0 seconds
-- **Average Tokens per Challenge:** 2510
-- **Average Cost per Challenge:** $0.0106
-- **Average Time per Challenge:** 31.4 seconds
-- **Average Efficiency:** 80.1 tokens/second
+- **Total Tokens:** 122,276
+- **Total Cost:** $0.5157
+- **Total Time:** 1524.3 seconds
+- **Average Tokens per Challenge:** 2495
+- **Average Cost per Challenge:** $0.0105
+- **Average Time per Challenge:** 31.1 seconds
+- **Average Efficiency:** 80.2 tokens/second
 
 ## OpenAI:o3-mini-2025-01-31
 
 ### Challenge Summary
-- **Total Challenges:** 44
-- **Accepted:** 39 (88.6%)
-- **Rejected:** 5 (11.4%)
+- **Total Challenges:** 45
+- **Accepted:** 40 (88.9%)
+- **Rejected:** 5 (11.1%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 220
-- **Correct Attempts:** 195
-- **Overall Success Rate:** 88.6%
-- **Average Success Rate per Challenge:** 88.6%
+- **Total Solution Attempts:** 225
+- **Correct Attempts:** 200
+- **Overall Success Rate:** 88.9%
+- **Average Success Rate per Challenge:** 88.9%
 
 ### Performance Metrics
-- **Total Tokens:** 326,067
-- **Total Cost:** $1.9788
-- **Total Time:** 3012.7 seconds
-- **Average Tokens per Challenge:** 7411
-- **Average Cost per Challenge:** $0.0450
-- **Average Time per Challenge:** 68.5 seconds
-- **Average Efficiency:** 108.2 tokens/second
+- **Total Tokens:** 333,350
+- **Total Cost:** $2.0220
+- **Total Time:** 3121.2 seconds
+- **Average Tokens per Challenge:** 7408
+- **Average Cost per Challenge:** $0.0449
+- **Average Time per Challenge:** 69.4 seconds
+- **Average Efficiency:** 106.8 tokens/second
 
 ## OpenAI:gpt-4.1-2025-04-14
 

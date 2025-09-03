@@ -1,5 +1,5 @@
 {
-  "generated_timestamp": "2025-08-31T16:39:29.053316",
+  "generated_timestamp": "2025-09-01T23:02:30.174736",
   "total_models": 62,
   "models": [
     {
@@ -277,15 +277,15 @@
     },
     {
       "model_name": "Mistral:devstral-medium-2507",
-      "avg_cost_per_challenge": 0.010563,
-      "total_challenges": 48,
-      "accepted_challenges": 43,
+      "avg_cost_per_challenge": 0.010524,
+      "total_challenges": 49,
+      "accepted_challenges": 44,
       "rejected_challenges": 5,
-      "acceptance_rate": 0.8958,
-      "overall_success_rate": 0.8875,
-      "avg_tokens_per_challenge": 2510.0,
-      "avg_time_per_challenge": 31.35,
-      "avg_tokens_per_second": 80.06,
+      "acceptance_rate": 0.898,
+      "overall_success_rate": 0.8898,
+      "avg_tokens_per_challenge": 2495.0,
+      "avg_time_per_challenge": 31.11,
+      "avg_tokens_per_second": 80.22,
       "qualified": true
     },
     {
@@ -433,15 +433,15 @@
     },
     {
       "model_name": "OpenAI:o3-mini-2025-01-31",
-      "avg_cost_per_challenge": 0.044973,
-      "total_challenges": 44,
-      "accepted_challenges": 39,
+      "avg_cost_per_challenge": 0.044933,
+      "total_challenges": 45,
+      "accepted_challenges": 40,
       "rejected_challenges": 5,
-      "acceptance_rate": 0.8864,
-      "overall_success_rate": 0.8864,
-      "avg_tokens_per_challenge": 7411.0,
-      "avg_time_per_challenge": 68.47,
-      "avg_tokens_per_second": 108.23,
+      "acceptance_rate": 0.8889,
+      "overall_success_rate": 0.8889,
+      "avg_tokens_per_challenge": 7408.0,
+      "avg_time_per_challenge": 69.36,
+      "avg_tokens_per_second": 106.8,
       "qualified": true
     },
     {
