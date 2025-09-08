@@ -1,6 +1,6 @@
 # Valyrian Games - Coding Challenge Statistics Report
 
-**Generated:** 2025-09-01 23:02:30
+**Generated:** 2025-09-06 15:17:11
 **Sorted by:** Acceptance Rate
 
 ## Visual Analytics Overview
@@ -21,22 +21,22 @@
 
 | Model                                         | Challenges | Accept% | Success% | Avg Cost  | Efficiency |
 |-----------------------------------------------|------------|---------|----------|-----------|------------|
-| OpenAI:o1-2024-12-17                          |      11/11 |  100.0% |    98.2% |    $1.667 |   96.4 t/s |
-| OpenAI:gpt-5-mini                             |      37/41 |   90.2% |    97.4% |    $0.052 |   62.6 t/s |
-| Mistral:devstral-medium-2507                  |      44/49 |   89.8% |    89.0% |    $0.011 |   80.2 t/s |
-| OpenAI:o3-mini-2025-01-31                     |      40/45 |   88.9% |    88.9% |    $0.045 |  106.8 t/s |
-| OpenAI:gpt-4.1-2025-04-14                     |      34/39 |   87.2% |    84.7% |    $0.122 |   57.8 t/s |
-| OpenAI:o4-mini-2025-04-16                     |      26/34 |   76.5% |    81.6% |    $0.123 |   88.3 t/s |
-| Together-ai:Qwen/Qwen3-235B-A22B-Instruct-... |      37/50 |   74.0% |    77.1% |    $0.012 |   45.3 t/s |
-| OpenAI:gpt-4o-2024-08-06                      |      18/25 |   72.0% |    74.3% |    $0.201 |   62.3 t/s |
-| Mistral:codestral-2501                        |      32/45 |   71.1% |    76.8% |    $0.025 |  173.5 t/s |
+| OpenAI:o1-2024-12-17                          |      12/12 |  100.0% |    98.3% |    $1.761 |  100.0 t/s |
+| OpenAI:gpt-5-mini                             |      40/44 |   90.9% |    97.5% |    $0.053 |   63.3 t/s |
+| Mistral:devstral-medium-2507                  |      42/47 |   89.4% |    87.2% |    $0.010 |   76.8 t/s |
+| OpenAI:o3-mini-2025-01-31                     |      41/46 |   89.1% |    88.7% |    $0.046 |  106.3 t/s |
+| OpenAI:gpt-4.1-2025-04-14                     |      35/40 |   87.5% |    85.1% |    $0.122 |   57.6 t/s |
+| OpenAI:o4-mini-2025-04-16                     |      27/35 |   77.1% |    82.2% |    $0.123 |   88.1 t/s |
+| Together-ai:Qwen/Qwen3-235B-A22B-Instruct-... |      37/51 |   72.5% |    75.5% |    $0.012 |   44.6 t/s |
+| OpenAI:gpt-4o-2024-08-06                      |      18/25 |   72.0% |    72.6% |    $0.202 |   62.2 t/s |
+| Mistral:codestral-2501                        |      33/46 |   71.7% |    76.8% |    $0.026 |  173.5 t/s |
 | Together-ai:Qwen/Qwen3-Coder-480B-A35B-Ins... |      23/33 |   69.7% |    75.3% |    $0.113 |   36.9 t/s |
-| Mistral:pixtral-large-2411                    |      11/18 |   61.1% |    60.8% |    $0.224 |   37.7 t/s |
-| DeepSeek:deepseek-chat                        |      23/38 |   60.5% |   100.0% |    $0.015 |   17.8 t/s |
 | Anthropic:claude-opus-4-1-20250805            |       6/10 |   60.0% |    60.0% |    $2.477 |   40.1 t/s |
-| Groq:openai/gpt-oss-120b                      |      27/48 |   56.2% |    77.4% |    $0.014 |  230.2 t/s |
+| DeepSeek:deepseek-chat                        |      25/45 |   55.6% |   100.0% |    $0.014 |   18.0 t/s |
 | Together-ai:Qwen/Qwen3-235B-A22B-Thinking-... |      16/29 |   55.2% |    70.8% |    $0.127 |   50.7 t/s |
+| Groq:openai/gpt-oss-120b                      |      27/49 |   55.1% |    76.5% |    $0.015 |  232.2 t/s |
 | Mistral:magistral-medium-2506                 |       6/11 |   54.5% |    62.5% |    $0.652 |  118.8 t/s |
+| Mistral:pixtral-large-2411                    |       8/15 |   53.3% |    56.2% |    $0.227 |   38.2 t/s |
 | Anthropic:claude-opus-4-20250514              |        3/6 |   50.0% |    48.0% |    $3.269 |   62.0 t/s |
 | Anthropic:claude-sonnet-4-20250514            |       5/10 |   50.0% |    93.8% |    $0.789 |   62.5 t/s |
 | OpenAI:gpt-4o-mini-2024-07-18                 |      11/23 |   47.8% |    54.8% |    $0.007 |   41.3 t/s |
@@ -87,156 +87,156 @@
 ## OpenAI:o1-2024-12-17
 
 ### Challenge Summary
-- **Total Challenges:** 11
-- **Accepted:** 11 (100.0%)
+- **Total Challenges:** 12
+- **Accepted:** 12 (100.0%)
 - **Rejected:** 0 (0.0%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 55
-- **Correct Attempts:** 54
-- **Overall Success Rate:** 98.2%
-- **Average Success Rate per Challenge:** 98.2%
+- **Total Solution Attempts:** 59
+- **Correct Attempts:** 58
+- **Overall Success Rate:** 98.3%
+- **Average Success Rate per Challenge:** 98.3%
 
 ### Performance Metrics
-- **Total Tokens:** 216,540
-- **Total Cost:** $18.3413
-- **Total Time:** 2247.0 seconds
-- **Average Tokens per Challenge:** 19685
-- **Average Cost per Challenge:** $1.6674
-- **Average Time per Challenge:** 204.3 seconds
-- **Average Efficiency:** 96.4 tokens/second
+- **Total Tokens:** 251,579
+- **Total Cost:** $21.1287
+- **Total Time:** 2515.7 seconds
+- **Average Tokens per Challenge:** 20965
+- **Average Cost per Challenge:** $1.7607
+- **Average Time per Challenge:** 209.6 seconds
+- **Average Efficiency:** 100.0 tokens/second
 
 ## OpenAI:gpt-5-mini
 
 ### Challenge Summary
-- **Total Challenges:** 41
-- **Accepted:** 37 (90.2%)
-- **Rejected:** 4 (9.8%)
+- **Total Challenges:** 44
+- **Accepted:** 40 (90.9%)
+- **Rejected:** 4 (9.1%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 189
-- **Correct Attempts:** 184
-- **Overall Success Rate:** 97.4%
-- **Average Success Rate per Challenge:** 90.2%
+- **Total Solution Attempts:** 204
+- **Correct Attempts:** 199
+- **Overall Success Rate:** 97.5%
+- **Average Success Rate per Challenge:** 90.9%
 
 ### Performance Metrics
-- **Total Tokens:** 893,819
-- **Total Cost:** $2.1517
-- **Total Time:** 14272.3 seconds
-- **Average Tokens per Challenge:** 21800
-- **Average Cost per Challenge:** $0.0525
-- **Average Time per Challenge:** 348.1 seconds
-- **Average Efficiency:** 62.6 tokens/second
+- **Total Tokens:** 969,346
+- **Total Cost:** $2.3313
+- **Total Time:** 15312.6 seconds
+- **Average Tokens per Challenge:** 22031
+- **Average Cost per Challenge:** $0.0530
+- **Average Time per Challenge:** 348.0 seconds
+- **Average Efficiency:** 63.3 tokens/second
 
 ## Mistral:devstral-medium-2507
 
 ### Challenge Summary
-- **Total Challenges:** 49
-- **Accepted:** 44 (89.8%)
-- **Rejected:** 5 (10.2%)
+- **Total Challenges:** 47
+- **Accepted:** 42 (89.4%)
+- **Rejected:** 5 (10.6%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 245
-- **Correct Attempts:** 218
-- **Overall Success Rate:** 89.0%
-- **Average Success Rate per Challenge:** 89.0%
+- **Total Solution Attempts:** 235
+- **Correct Attempts:** 205
+- **Overall Success Rate:** 87.2%
+- **Average Success Rate per Challenge:** 87.2%
 
 ### Performance Metrics
-- **Total Tokens:** 122,276
-- **Total Cost:** $0.5157
-- **Total Time:** 1524.3 seconds
-- **Average Tokens per Challenge:** 2495
-- **Average Cost per Challenge:** $0.0105
-- **Average Time per Challenge:** 31.1 seconds
-- **Average Efficiency:** 80.2 tokens/second
+- **Total Tokens:** 105,951
+- **Total Cost:** $0.4708
+- **Total Time:** 1379.7 seconds
+- **Average Tokens per Challenge:** 2254
+- **Average Cost per Challenge:** $0.0100
+- **Average Time per Challenge:** 29.4 seconds
+- **Average Efficiency:** 76.8 tokens/second
 
 ## OpenAI:o3-mini-2025-01-31
 
 ### Challenge Summary
-- **Total Challenges:** 45
-- **Accepted:** 40 (88.9%)
-- **Rejected:** 5 (11.1%)
+- **Total Challenges:** 46
+- **Accepted:** 41 (89.1%)
+- **Rejected:** 5 (10.9%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 225
-- **Correct Attempts:** 200
-- **Overall Success Rate:** 88.9%
-- **Average Success Rate per Challenge:** 88.9%
+- **Total Solution Attempts:** 230
+- **Correct Attempts:** 204
+- **Overall Success Rate:** 88.7%
+- **Average Success Rate per Challenge:** 88.7%
 
 ### Performance Metrics
-- **Total Tokens:** 333,350
-- **Total Cost:** $2.0220
-- **Total Time:** 3121.2 seconds
-- **Average Tokens per Challenge:** 7408
-- **Average Cost per Challenge:** $0.0449
-- **Average Time per Challenge:** 69.4 seconds
-- **Average Efficiency:** 106.8 tokens/second
+- **Total Tokens:** 347,064
+- **Total Cost:** $2.0940
+- **Total Time:** 3265.5 seconds
+- **Average Tokens per Challenge:** 7545
+- **Average Cost per Challenge:** $0.0455
+- **Average Time per Challenge:** 71.0 seconds
+- **Average Efficiency:** 106.3 tokens/second
 
 ## OpenAI:gpt-4.1-2025-04-14
 
 ### Challenge Summary
-- **Total Challenges:** 39
-- **Accepted:** 34 (87.2%)
-- **Rejected:** 5 (12.8%)
+- **Total Challenges:** 40
+- **Accepted:** 35 (87.5%)
+- **Rejected:** 5 (12.5%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 189
-- **Correct Attempts:** 160
-- **Overall Success Rate:** 84.7%
-- **Average Success Rate per Challenge:** 82.6%
+- **Total Solution Attempts:** 194
+- **Correct Attempts:** 165
+- **Overall Success Rate:** 85.1%
+- **Average Success Rate per Challenge:** 83.0%
 
 ### Performance Metrics
-- **Total Tokens:** 190,999
-- **Total Cost:** $4.7641
-- **Total Time:** 3305.6 seconds
-- **Average Tokens per Challenge:** 4897
-- **Average Cost per Challenge:** $0.1222
-- **Average Time per Challenge:** 84.8 seconds
-- **Average Efficiency:** 57.8 tokens/second
+- **Total Tokens:** 193,838
+- **Total Cost:** $4.8605
+- **Total Time:** 3365.2 seconds
+- **Average Tokens per Challenge:** 4846
+- **Average Cost per Challenge:** $0.1215
+- **Average Time per Challenge:** 84.1 seconds
+- **Average Efficiency:** 57.6 tokens/second
 
 ## OpenAI:o4-mini-2025-04-16
 
 ### Challenge Summary
-- **Total Challenges:** 34
-- **Accepted:** 26 (76.5%)
-- **Rejected:** 8 (23.5%)
+- **Total Challenges:** 35
+- **Accepted:** 27 (77.1%)
+- **Rejected:** 8 (22.9%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 158
-- **Correct Attempts:** 129
-- **Overall Success Rate:** 81.6%
-- **Average Success Rate per Challenge:** 76.5%
+- **Total Solution Attempts:** 163
+- **Correct Attempts:** 134
+- **Overall Success Rate:** 82.2%
+- **Average Success Rate per Challenge:** 77.1%
 
 ### Performance Metrics
-- **Total Tokens:** 682,697
-- **Total Cost:** $4.1929
-- **Total Time:** 7735.7 seconds
-- **Average Tokens per Challenge:** 20079
-- **Average Cost per Challenge:** $0.1233
-- **Average Time per Challenge:** 227.5 seconds
-- **Average Efficiency:** 88.3 tokens/second
+- **Total Tokens:** 702,985
+- **Total Cost:** $4.3174
+- **Total Time:** 7981.2 seconds
+- **Average Tokens per Challenge:** 20085
+- **Average Cost per Challenge:** $0.1234
+- **Average Time per Challenge:** 228.0 seconds
+- **Average Efficiency:** 88.1 tokens/second
 
 ## Together-ai:Qwen/Qwen3-235B-A22B-Instruct-2507-tput
 
 ### Challenge Summary
-- **Total Challenges:** 50
-- **Accepted:** 37 (74.0%)
-- **Rejected:** 13 (26.0%)
+- **Total Challenges:** 51
+- **Accepted:** 37 (72.5%)
+- **Rejected:** 14 (27.5%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 236
+- **Total Solution Attempts:** 241
 - **Correct Attempts:** 182
-- **Overall Success Rate:** 77.1%
-- **Average Success Rate per Challenge:** 74.4%
+- **Overall Success Rate:** 75.5%
+- **Average Success Rate per Challenge:** 72.9%
 
 ### Performance Metrics
-- **Total Tokens:** 282,295
-- **Total Cost:** $0.6200
-- **Total Time:** 6230.2 seconds
-- **Average Tokens per Challenge:** 5646
+- **Total Tokens:** 286,200
+- **Total Cost:** $0.6305
+- **Total Time:** 6411.9 seconds
+- **Average Tokens per Challenge:** 5612
 - **Average Cost per Challenge:** $0.0124
-- **Average Time per Challenge:** 124.6 seconds
-- **Average Efficiency:** 45.3 tokens/second
+- **Average Time per Challenge:** 125.7 seconds
+- **Average Efficiency:** 44.6 tokens/second
 
 ## OpenAI:gpt-4o-2024-08-06
 
@@ -247,39 +247,39 @@
 
 ### Success Rate Analysis
 - **Total Solution Attempts:** 113
-- **Correct Attempts:** 84
-- **Overall Success Rate:** 74.3%
-- **Average Success Rate per Challenge:** 68.8%
+- **Correct Attempts:** 82
+- **Overall Success Rate:** 72.6%
+- **Average Success Rate per Challenge:** 67.2%
 
 ### Performance Metrics
-- **Total Tokens:** 151,578
-- **Total Cost:** $5.0151
-- **Total Time:** 2432.8 seconds
-- **Average Tokens per Challenge:** 6063
-- **Average Cost per Challenge:** $0.2006
-- **Average Time per Challenge:** 97.3 seconds
-- **Average Efficiency:** 62.3 tokens/second
+- **Total Tokens:** 152,428
+- **Total Cost:** $5.0568
+- **Total Time:** 2448.9 seconds
+- **Average Tokens per Challenge:** 6097
+- **Average Cost per Challenge:** $0.2023
+- **Average Time per Challenge:** 98.0 seconds
+- **Average Efficiency:** 62.2 tokens/second
 
 ## Mistral:codestral-2501
 
 ### Challenge Summary
-- **Total Challenges:** 45
-- **Accepted:** 32 (71.1%)
-- **Rejected:** 13 (28.9%)
+- **Total Challenges:** 46
+- **Accepted:** 33 (71.7%)
+- **Rejected:** 13 (28.3%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 203
-- **Correct Attempts:** 156
+- **Total Solution Attempts:** 207
+- **Correct Attempts:** 159
 - **Overall Success Rate:** 76.8%
-- **Average Success Rate per Challenge:** 71.1%
+- **Average Success Rate per Challenge:** 71.2%
 
 ### Performance Metrics
-- **Total Tokens:** 516,788
-- **Total Cost:** $1.1127
-- **Total Time:** 2978.1 seconds
-- **Average Tokens per Challenge:** 11484
-- **Average Cost per Challenge:** $0.0247
-- **Average Time per Challenge:** 66.2 seconds
+- **Total Tokens:** 553,555
+- **Total Cost:** $1.2031
+- **Total Time:** 3191.0 seconds
+- **Average Tokens per Challenge:** 12034
+- **Average Cost per Challenge:** $0.0262
+- **Average Time per Challenge:** 69.4 seconds
 - **Average Efficiency:** 173.5 tokens/second
 
 ## Together-ai:Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8
@@ -304,50 +304,6 @@
 - **Average Time per Challenge:** 180.1 seconds
 - **Average Efficiency:** 36.9 tokens/second
 
-## Mistral:pixtral-large-2411
-
-### Challenge Summary
-- **Total Challenges:** 18
-- **Accepted:** 11 (61.1%)
-- **Rejected:** 7 (38.9%)
-
-### Success Rate Analysis
-- **Total Solution Attempts:** 79
-- **Correct Attempts:** 48
-- **Overall Success Rate:** 60.8%
-- **Average Success Rate per Challenge:** 58.9%
-
-### Performance Metrics
-- **Total Tokens:** 211,094
-- **Total Cost:** $4.0368
-- **Total Time:** 5594.4 seconds
-- **Average Tokens per Challenge:** 11727
-- **Average Cost per Challenge:** $0.2243
-- **Average Time per Challenge:** 310.8 seconds
-- **Average Efficiency:** 37.7 tokens/second
-
-## DeepSeek:deepseek-chat
-
-### Challenge Summary
-- **Total Challenges:** 38
-- **Accepted:** 23 (60.5%)
-- **Rejected:** 15 (39.5%)
-
-### Success Rate Analysis
-- **Total Solution Attempts:** 103
-- **Correct Attempts:** 103
-- **Overall Success Rate:** 100.0%
-- **Average Success Rate per Challenge:** 60.5%
-
-### Performance Metrics
-- **Total Tokens:** 230,055
-- **Total Cost:** $0.5540
-- **Total Time:** 12937.5 seconds
-- **Average Tokens per Challenge:** 6054
-- **Average Cost per Challenge:** $0.0146
-- **Average Time per Challenge:** 340.5 seconds
-- **Average Efficiency:** 17.8 tokens/second
-
 ## Anthropic:claude-opus-4-1-20250805
 
 ### Challenge Summary
@@ -370,27 +326,27 @@
 - **Average Time per Challenge:** 455.4 seconds
 - **Average Efficiency:** 40.1 tokens/second
 
-## Groq:openai/gpt-oss-120b
+## DeepSeek:deepseek-chat
 
 ### Challenge Summary
-- **Total Challenges:** 48
-- **Accepted:** 27 (56.2%)
-- **Rejected:** 21 (43.8%)
+- **Total Challenges:** 45
+- **Accepted:** 25 (55.6%)
+- **Rejected:** 20 (44.4%)
 
 ### Success Rate Analysis
-- **Total Solution Attempts:** 164
-- **Correct Attempts:** 127
-- **Overall Success Rate:** 77.4%
-- **Average Success Rate per Challenge:** 55.8%
+- **Total Solution Attempts:** 112
+- **Correct Attempts:** 112
+- **Overall Success Rate:** 100.0%
+- **Average Success Rate per Challenge:** 55.6%
 
 ### Performance Metrics
-- **Total Tokens:** 732,158
-- **Total Cost:** $0.6927
-- **Total Time:** 3180.4 seconds
-- **Average Tokens per Challenge:** 15253
-- **Average Cost per Challenge:** $0.0144
-- **Average Time per Challenge:** 66.3 seconds
-- **Average Efficiency:** 230.2 tokens/second
+- **Total Tokens:** 267,584
+- **Total Cost:** $0.6353
+- **Total Time:** 14864.2 seconds
+- **Average Tokens per Challenge:** 5946
+- **Average Cost per Challenge:** $0.0141
+- **Average Time per Challenge:** 330.3 seconds
+- **Average Efficiency:** 18.0 tokens/second
 
 ## Together-ai:Qwen/Qwen3-235B-A22B-Thinking-2507
 
@@ -414,6 +370,28 @@
 - **Average Time per Challenge:** 626.0 seconds
 - **Average Efficiency:** 50.7 tokens/second
 
+## Groq:openai/gpt-oss-120b
+
+### Challenge Summary
+- **Total Challenges:** 49
+- **Accepted:** 27 (55.1%)
+- **Rejected:** 22 (44.9%)
+
+### Success Rate Analysis
+- **Total Solution Attempts:** 166
+- **Correct Attempts:** 127
+- **Overall Success Rate:** 76.5%
+- **Average Success Rate per Challenge:** 54.7%
+
+### Performance Metrics
+- **Total Tokens:** 754,484
+- **Total Cost:** $0.7113
+- **Total Time:** 3249.9 seconds
+- **Average Tokens per Challenge:** 15398
+- **Average Cost per Challenge:** $0.0145
+- **Average Time per Challenge:** 66.3 seconds
+- **Average Efficiency:** 232.2 tokens/second
+
 ## Mistral:magistral-medium-2506
 
 ### Challenge Summary
@@ -435,6 +413,28 @@
 - **Average Cost per Challenge:** $0.6519
 - **Average Time per Challenge:** 658.7 seconds
 - **Average Efficiency:** 118.8 tokens/second
+
+## Mistral:pixtral-large-2411
+
+### Challenge Summary
+- **Total Challenges:** 15
+- **Accepted:** 8 (53.3%)
+- **Rejected:** 7 (46.7%)
+
+### Success Rate Analysis
+- **Total Solution Attempts:** 64
+- **Correct Attempts:** 36
+- **Overall Success Rate:** 56.2%
+- **Average Success Rate per Challenge:** 54.7%
+
+### Performance Metrics
+- **Total Tokens:** 179,642
+- **Total Cost:** $3.4106
+- **Total Time:** 4704.4 seconds
+- **Average Tokens per Challenge:** 11976
+- **Average Cost per Challenge:** $0.2274
+- **Average Time per Challenge:** 313.6 seconds
+- **Average Efficiency:** 38.2 tokens/second
 
 ## Anthropic:claude-opus-4-20250514
 
